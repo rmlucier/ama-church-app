@@ -1,4 +1,4 @@
-export async function fetchCsv(url: string): Promise<any[]> {
+export async function fetchCsv<T = Record<string, string>>(url: string): Promise<T[]> {
   const res = await fetch(url);
   const text = await res.text();
 
@@ -7,9 +7,9 @@ export async function fetchCsv(url: string): Promise<any[]> {
 
   return lines.map((line) => {
     const values = line.split(',');
-    const entry: any = {};
+    const entry = {} as T;
     headers.forEach((h, i) => {
-      entry[h.trim()] = values[i]?.trim();
+      (entry as unknown as Record<string, string>)[h.trim()] = values[i]?.trim() || '';
     });
     return entry;
   });

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { fetchCsv } from '../utils/csv';
+import { fetchCsv } from '@/lib/fetchCsv';
 
 const SHEET_URL =
   'https://docs.google.com/spreadsheets/d/1XlMPoLVhTYkYqNObg6uSVhHZBUknpbOoQk4Kqmh2pRQ/gviz/tq?tqx=out:csv&sheet=Event%20Directory';
