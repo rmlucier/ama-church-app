@@ -18,6 +18,13 @@ type Church = {
   Description?: string;
 };
 
+// Helper function to sanitize text and prevent auto-linking
+const sanitizeText = (text: string): string => {
+  if (!text) return '';
+  // Remove any quotes that might be causing issues
+  return text.replace(/[""]/g, '').trim();
+};
+
 export default function ChurchesPage() {
   const [churches, setChurches] = useState<Church[]>([]);
   const [loading, setLoading] = useState(true);
@@ -28,7 +35,20 @@ export default function ChurchesPage() {
     const loadData = async () => {
       try {
         const data = await fetchCsv<Church>(SHEET_URL);
-        setChurches(data);
+        // Sanitize the data to prevent auto-linking issues
+        const sanitizedData = data.map(church => ({
+          ...church,
+          Name: sanitizeText(church.Name),
+          Denomination: sanitizeText(church.Denomination),
+          Address: sanitizeText(church.Address),
+          'Service Times': sanitizeText(church['Service Times']),
+          Pastor: sanitizeText(church.Pastor),
+          Phone: church.Phone ? sanitizeText(church.Phone) : undefined,
+          Email: church.Email ? sanitizeText(church.Email) : undefined,
+          Description: church.Description ? sanitizeText(church.Description) : undefined,
+          Website: church.Website ? sanitizeText(church.Website) : undefined,
+        }));
+        setChurches(sanitizedData);
       } catch {
         setError('Unable to load churches at this time.');
       } finally {
