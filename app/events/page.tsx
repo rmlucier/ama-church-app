@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { fetchGoogleCalendarEvents, formatEventDateTime, GoogleCalendarEvent } from '@/lib/fetchGoogleCalendarEvents';
+import { fetchGoogleCalendarEvents, GoogleCalendarEvent } from '@/lib/fetchGoogleCalendarEvents';
 
 export default function EventsPage() {
   const [events, setEvents] = useState<GoogleCalendarEvent[]>([]);

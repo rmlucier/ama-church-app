@@ -14,6 +14,26 @@ export interface GoogleCalendarEvent {
   htmlLink: string;
 }
 
+interface GoogleCalendarApiItem {
+  id: string;
+  summary: string;
+  start: {
+    dateTime?: string;
+    date?: string;
+  };
+  end: {
+    dateTime?: string;
+    date?: string;
+  };
+  location?: string;
+  description?: string;
+  htmlLink: string;
+}
+
+interface GoogleCalendarApiResponse {
+  items?: GoogleCalendarApiItem[];
+}
+
 export async function fetchGoogleCalendarEvents(): Promise<GoogleCalendarEvent[]> {
   const CALENDAR_ID = 'c_74a77dc24b520db8ea93131e3f116ee1ebb35eda1e920935c28f38cf0586d379@group.calendar.google.com';
   const API_KEY = 'AIzaSyB56IkF1PiztWLEqEsxbOd24WTZAv-F2w8';
@@ -28,9 +48,9 @@ export async function fetchGoogleCalendarEvents(): Promise<GoogleCalendarEvent[]
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     
-    const data = await response.json();
+    const data: GoogleCalendarApiResponse = await response.json();
     
-    return data.items?.map((item: any) => ({
+    return data.items?.map((item: GoogleCalendarApiItem) => ({
       id: item.id,
       title: item.summary,
       start: item.start,

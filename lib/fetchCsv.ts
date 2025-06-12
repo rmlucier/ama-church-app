@@ -9,7 +9,7 @@ export async function fetchCsv<T = Record<string, string>>(url: string): Promise
     const values = parseCsvLine(line);
     const entry = {} as T;
     headers.forEach((header, i) => {
-      (entry as any)[header] = values[i] ?? '';
+      (entry as Record<string, string>)[header] = values[i] ?? '';
     });
     return entry;
   });
