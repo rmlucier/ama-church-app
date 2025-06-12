@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { fetchCsv } from '@/lib/fetchCsv';
 
 const SHEET_URL =
-  'https://docs.google.com/spreadsheets/d/1XlMPoLVhTYkYqNObg6uSVhHZBUknpbOoQk4Kqmh2pRQ/gviz/tq?tqx=out:csv&sheet=Church%20Directory';
+  'https://docs.google.com/spreadsheets/d/e/2PACX-1vSFvwE_5w0OCJ1qh5U6KXfVcxGVspcT4jADr4waYdEfGmAZwdxPEVQ4Yw6TOTreHWmuH-V8yjs-wZ23/pub?gid=0&single=true&output=csv';
 
 type Church = {
   Name: string;
@@ -20,19 +20,15 @@ type Church = {
 
 export default function ChurchesPage() {
   const [churches, setChurches] = useState<Church[]>([]);
-  const [filtered, setFiltered] = useState<Church[]>([]);
-  const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [denominationFilter, setDenominationFilter] = useState('All');
-  const [sortField, setSortField] = useState<'Name' | 'Denomination'>('Name');
+  const [showMap, setShowMap] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
       try {
         const data = await fetchCsv<Church>(SHEET_URL);
         setChurches(data);
-        setFiltered(data);
       } catch {
         setError('Unable to load churches at this time.');
       } finally {
@@ -42,127 +38,75 @@ export default function ChurchesPage() {
     loadData();
   }, []);
 
-  const uniqueDenominations = Array.from(new Set(churches.map((c) => c.Denomination))).sort();
-
-  const applyFilters = (term: string, denom: string, sort: typeof sortField) => {
-    let data = [...churches];
-
-    if (denom !== 'All') {
-      data = data.filter((c) => c.Denomination === denom);
-    }
-
-    if (term.trim()) {
-      data = data.filter((c) =>
-        Object.values(c)
-          .join(' ')
-          .toLowerCase()
-          .includes(term.toLowerCase())
-      );
-    }
-
-    data.sort((a, b) => a[sort].localeCompare(b[sort]));
-
-    setFiltered(data);
-  };
-
-  const handleSearch = (term: string) => {
-    setSearch(term);
-    applyFilters(term, denominationFilter, sortField);
-  };
-
-  const handleDenominationChange = (denom: string) => {
-    setDenominationFilter(denom);
-    applyFilters(search, denom, sortField);
-  };
-
-  const handleSortChange = (field: typeof sortField) => {
-    setSortField(field);
-    applyFilters(search, denominationFilter, field);
-  };
-
   return (
-    <main className="bg-pink-100 min-h-screen p-8">
+    <main className="bg-[#D5DED9] min-h-screen p-8">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-4 text-gray-800">
+        <h1 className="text-4xl font-bold text-center mb-4 text-[#7A6A53]">
           Find a Church in Albion
         </h1>
-        <p className="text-center text-gray-700 mb-6">
+        <p className="text-center text-[#7A6A53] mb-8">
           Discover local churches and find a community that fits you.
         </p>
 
-        {/* Controls */}
-        <div className="mb-6 flex flex-col md:flex-row justify-center items-center gap-4">
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => handleSearch(e.target.value)}
-            placeholder="Search by name, pastor, or denomination..."
-            className="p-2 rounded-md border border-gray-300 w-full md:w-1/3"
-          />
-          <select
-            value={denominationFilter}
-            onChange={(e) => handleDenominationChange(e.target.value)}
-            className="p-2 rounded-md border border-gray-300"
-          >
-            <option value="All">All Denominations</option>
-            {uniqueDenominations.map((d) => (
-              <option key={d} value={d}>
-                {d}
-              </option>
-            ))}
-          </select>
-          <select
-            value={sortField}
-            onChange={(e) => handleSortChange(e.target.value as 'Name' | 'Denomination')}
-            className="p-2 rounded-md border border-gray-300"
-          >
-            <option value="Name">Sort by Name</option>
-            <option value="Denomination">Sort by Denomination</option>
-          </select>
+        {/* Map Toggle */}
+        <div className="my-6 text-center">
           <button
-            onClick={() => window.print()}
-            className="bg-pink-500 text-white px-4 py-2 rounded-md hover:bg-pink-600"
+            onClick={() => setShowMap((prev) => !prev)}
+            className="bg-[#948C75] text-white px-4 py-2 rounded-md hover:bg-[#7A6A53] transition"
           >
-            Print
+            {showMap ? 'Hide Map' : 'View Church Map'}
           </button>
+
+          {showMap && (
+            <div className="mt-4 w-full max-w-3xl mx-auto aspect-video">
+              <iframe
+                src="https://www.google.com/maps/d/embed?mid=1e0NrD7g66qSGmI6YBAB_KXALKSUikzM&ehbc=2E312F&noprof=1"
+                width="100%"
+                height="100%"
+                className="rounded-lg border"
+                allowFullScreen
+                loading="lazy"
+              ></iframe>
+            </div>
+          )}
         </div>
 
         {/* Feedback */}
-        {loading && <p className="text-center text-gray-600">Loading churches...</p>}
+        {loading && <p className="text-center text-[#7A6A53]">Loading churches...</p>}
         {error && <p className="text-center text-red-600">{error}</p>}
-        {!loading && !error && filtered.length === 0 && (
-          <p className="text-center text-gray-600">No churches found.</p>
+        {!loading && !error && churches.length === 0 && (
+          <p className="text-center text-[#7A6A53]">No churches found.</p>
         )}
 
         {/* Church Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((church, idx) => (
+          {churches.map((church, idx) => (
             <div key={idx} className="bg-white rounded-xl shadow-md p-4 space-y-2 print:break-inside-avoid">
-              <h2 className="text-xl font-semibold text-gray-800">{church.Name}</h2>
-              <p className="text-pink-700 font-medium">{church.Denomination}</p>
-              <p className="text-gray-600">{church.Address}</p>
+              <h2 className="text-xl font-semibold text-[#7A6A53]">{church.Name}</h2>
+              <p className="text-[#948C75] font-medium">{church.Denomination}</p>
+              <p className="text-[#7A6A53]">{church.Address}</p>
               {church['Service Times'] && (
-                <p className="text-gray-600">Service Times: {church['Service Times']}</p>
+                <p className="text-[#7A6A53]">Service Times: {church['Service Times']}</p>
               )}
-              {church.Pastor && <p className="text-gray-600">Pastor: {church.Pastor}</p>}
-              {church.Phone && <p className="text-gray-600">Phone: {church.Phone}</p>}
+              {church.Pastor && <p className="text-[#7A6A53]">Pastor: {church.Pastor}</p>}
+              {church.Phone && <p className="text-[#7A6A53]">Phone: {church.Phone}</p>}
               {church.Email && (
-                <p className="text-gray-600">
-                  Email:{' '}
-                  <a href={`mailto:${church.Email}`} className="underline text-pink-600">
-                    {church.Email}
-                  </a>
-                </p>
+                <button
+                  onClick={() => window.location.href = `mailto:${church.Email}`}
+                  className="w-full bg-[#948C75] text-white text-center px-3 py-2 rounded-md hover:bg-[#7A6A53] transition"
+                >
+                  Contact Pastor
+                </button>
               )}
               {church.Description && (
-                <p className="text-gray-600 text-sm">{church.Description}</p>
+                <p className="text-[#7A6A53] text-sm">{church.Description}</p>
               )}
               {church.Address && (
                 <a
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(church.Address)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 underline text-sm"
+                  className="block mt-2 bg-[#948C75] text-white text-center px-3 py-2 rounded-md hover:bg-[#7A6A53] transition"
                 >
                   Get Directions
                 </a>
@@ -172,7 +116,7 @@ export default function ChurchesPage() {
                   href={church.Website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-pink-600 underline text-sm"
+                  className="block bg-[#948C75] text-white text-center px-3 py-2 rounded-md hover:bg-[#7A6A53] transition"
                 >
                   Visit Website
                 </a>

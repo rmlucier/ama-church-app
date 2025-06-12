@@ -21,14 +21,14 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="bg-pink-100 w-full py-16 lg:py-24">
+    <section className="bg-[#D5DED9] w-full py-16 lg:py-24">
       <div className="max-w-6xl mx-auto px-6 text-center">
         {/* Title and Subheading */}
         <div className="mb-12">
-          <h1 className="text-4xl lg:text-6xl font-bold mb-6 text-gray-800">
+          <h1 className="text-4xl lg:text-6xl font-bold mb-6 text-[#7A6A53]">
             Uniting Churches. Serving Albion.
           </h1>
-          <p className="text-lg lg:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg lg:text-xl text-[#7A6A53] max-w-3xl mx-auto leading-relaxed">
             The Albion Ministerial Association exists to bring together local churches to share the love of Christ and serve our community.
           </p>
         </div>
@@ -61,8 +61,8 @@ export default function HeroSection() {
                 onClick={() => setCurrentImageIndex(index)}
                 className={`w-3 h-3 rounded-full transition-colors ${
                   index === currentImageIndex 
-                    ? 'bg-pink-600' 
-                    : 'bg-gray-300 hover:bg-gray-400'
+                    ? 'bg-[#948C75]' 
+                    : 'bg-[#99B2B7] hover:bg-[#7A6A53]'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
@@ -74,7 +74,7 @@ export default function HeroSection() {
         <div className="mb-8">
           <Link
             href="/churches"
-            className="inline-block bg-pink-600 hover:bg-pink-700 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            className="inline-block bg-[#948C75] hover:bg-[#7A6A53] text-white font-semibold px-8 py-4 rounded-lg text-lg transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
           >
             Find a Church
           </Link>

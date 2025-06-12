@@ -45,9 +45,9 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           {/* Icon */}
           <div className="mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-pink-100 rounded-full mb-6">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-[#D5DED9] rounded-full mb-6">
               <svg 
-                className="w-8 h-8 text-pink-600" 
+                className="w-8 h-8 text-[#948C75]" 
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24" 
@@ -64,26 +64,26 @@ export default function Home() {
           </div>
           
           {/* Title */}
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#7A6A53] mb-6">
             Our Mission
           </h2>
           
           {/* Subtext */}
-          <p className="text-lg lg:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
+          <p className="text-lg lg:text-xl text-[#7A6A53] leading-relaxed max-w-3xl mx-auto">
             The Albion Ministerial Association exists to unite the churches of Albion in prayer, service, and outreach. Together, we reflect the love of Jesus, foster unity, and meet the real needs of our neighbors—spiritually, emotionally, and physically.
           </p>
         </div>
       </section>
 
       {/* Churches United in Purpose Section */}
-      <section className="bg-pink-100 py-16 lg:py-20">
+      <section className="bg-[#D5DED9] py-16 lg:py-20">
         <div className="max-w-6xl mx-auto px-6">
           {/* Section Header */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-[#7A6A53] mb-4">
               Churches United in Purpose
             </h2>
-            <p className="text-lg lg:text-xl text-gray-700 max-w-3xl mx-auto">
+            <p className="text-lg lg:text-xl text-[#7A6A53] max-w-3xl mx-auto">
               Dozens of churches working side by side for the good of Albion.
             </p>
           </div>
@@ -95,13 +95,13 @@ export default function Home() {
                 key={index}
                 className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6"
               >
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                <h3 className="text-xl font-semibold text-[#7A6A53] mb-2">
                   {church.name}
                 </h3>
-                <p className="text-pink-600 font-medium mb-3">
+                <p className="text-[#948C75] font-medium mb-3">
                   {church.denomination}
                 </p>
-                <p className="text-gray-600 text-sm">
+                <p className="text-[#7A6A53] text-sm">
                   {church.location}
                 </p>
               </div>
@@ -115,16 +115,16 @@ export default function Home() {
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white shadow-md rounded-xl p-6 hover:shadow-lg transition-shadow">
-              <h2 className="text-xl font-semibold mb-3 text-gray-800">About AMA</h2>
-              <p className="text-gray-600">Learn more about our mission and how we serve Albion.</p>
+              <h2 className="text-xl font-semibold mb-3 text-[#7A6A53]">About AMA</h2>
+              <p className="text-[#7A6A53]">Learn more about our mission and how we serve Albion.</p>
             </div>
             <div className="bg-white shadow-md rounded-xl p-6 hover:shadow-lg transition-shadow">
-              <h2 className="text-xl font-semibold mb-3 text-gray-800">Find a Church</h2>
-              <p className="text-gray-600">Discover local churches and find the right fit for you.</p>
+              <h2 className="text-xl font-semibold mb-3 text-[#7A6A53]">Find a Church</h2>
+              <p className="text-[#7A6A53]">Discover local churches and find the right fit for you.</p>
             </div>
             <div className="bg-white shadow-md rounded-xl p-6 hover:shadow-lg transition-shadow">
-              <h2 className="text-xl font-semibold mb-3 text-gray-800">Get Help</h2>
-              <p className="text-gray-600">Find resources for food, shelter, clothing, and more.</p>
+              <h2 className="text-xl font-semibold mb-3 text-[#7A6A53]">Get Help</h2>
+              <p className="text-[#7A6A53]">Find resources for food, shelter, clothing, and more.</p>
             </div>
           </div>
         </div>
@@ -133,15 +133,15 @@ export default function Home() {
       {/* Call-to-Action Section */}
       <section className="bg-white py-16 lg:py-20">
         <div className="max-w-2xl mx-auto px-6 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#7A6A53] mb-6">
             Need Support? Start Here.
           </h2>
-          <p className="text-lg lg:text-xl text-gray-700 leading-relaxed mb-8">
+          <p className="text-lg lg:text-xl text-[#7A6A53] leading-relaxed mb-8">
             Food, shelter, clothing, recovery, housing, and more — the Albion Ministerial Association helps connect you to the resources you need.
           </p>
           <a
             href="/help"
-            className="inline-block bg-pink-600 hover:bg-pink-700 text-white font-semibold px-10 py-4 rounded-full text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            className="inline-block bg-[#948C75] hover:bg-[#7A6A53] text-white font-semibold px-10 py-4 rounded-full text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
           >
             Get Help
           </a>

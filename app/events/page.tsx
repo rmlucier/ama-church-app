@@ -1,213 +1,167 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { fetchCsv } from '@/lib/fetchCsv';
-
-const SHEET_URL =
-  'https://docs.google.com/spreadsheets/d/1XlMPoLVhTYkYqNObg6uSVhHZBUknpbOoQk4Kqmh2pRQ/gviz/tq?tqx=out:csv&sheet=Event%20Directory';
-
-type Event = {
-  Name: string;
-  Date: string;
-  Time: string;
-  Type: string;
-  Location: string;
-  Description: string;
-  'Contact Name': string;
-  Email?: string;
-};
+import { fetchGoogleCalendarEvents, formatEventDateTime, GoogleCalendarEvent } from '@/lib/fetchGoogleCalendarEvents';
 
 export default function EventsPage() {
-  const [events, setEvents] = useState<Event[]>([]);
-  const [filtered, setFiltered] = useState<Event[]>([]);
-  const [search, setSearch] = useState('');
+  const [events, setEvents] = useState<GoogleCalendarEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const loadData = async () => {
+    const loadEvents = async () => {
       try {
-        const data = await fetchCsv(SHEET_URL) as Event[];
-        // Sort events by date ascending
-        const sortedData = data.sort((a: Event, b: Event) => {
-          const dateA = new Date(a.Date);
-          const dateB = new Date(b.Date);
-          return dateA.getTime() - dateB.getTime();
-        });
-        setEvents(sortedData);
-        setFiltered(sortedData);
-      } catch {
+        const data = await fetchGoogleCalendarEvents();
+        setEvents(data);
+      } catch (err) {
         setError('Unable to load events at this time.');
+        console.error('Error loading events:', err);
       } finally {
         setLoading(false);
       }
     };
-    loadData();
+    loadEvents();
   }, []);
 
-  const handleSearch = (term: string) => {
-    setSearch(term);
-    if (term.trim() === '') {
-      setFiltered(events);
-    } else {
-      const filteredData = events.filter((event) =>
-        Object.values(event)
-          .join(' ')
-          .toLowerCase()
-          .includes(term.toLowerCase())
-      );
-      setFiltered(filteredData);
-    }
+  const formatDateBox = (dateString: string) => {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = date.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
+    return `${day} ${month}`;
   };
 
-  const formatDate = (dateString: string) => {
-    try {
-      const date = new Date(dateString);
-      return date.toLocaleDateString('en-US', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      });
-    } catch {
-      return dateString;
-    }
-  };
-
-  const isUpcoming = (dateString: string) => {
-    try {
-      const eventDate = new Date(dateString);
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      return eventDate >= today;
-    } catch {
-      return true;
-    }
+  const formatTime = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+    });
   };
 
   return (
-    <main className="bg-pink-100 min-h-screen p-8">
+    <main className="bg-[#D5DED9] min-h-screen p-8">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-4 text-gray-800">
-          Upcoming Events in Albion
+        <h1 className="text-4xl font-bold text-center mb-4 text-[#7A6A53]">
+          Upcoming Events
         </h1>
-        <p className="text-center text-gray-700 mb-6">
-          Discover community events, church activities, and opportunities to connect.
+        <p className="text-center text-[#7A6A53] mb-8">
+          Join us for these upcoming events in the Albion community.
         </p>
 
-        {/* Controls */}
-        <div className="mb-6 flex flex-col md:flex-row justify-center items-center gap-4">
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => handleSearch(e.target.value)}
-            placeholder="Search events by name, type, location, or description..."
-            className="p-2 rounded-md border border-gray-300 w-full md:w-1/2"
-          />
-          <button
-            onClick={() => window.print()}
-            className="bg-pink-500 text-white px-4 py-2 rounded-md hover:bg-pink-600 transition-colors"
-          >
-            Print Events
-          </button>
-        </div>
+        {/* Loading State */}
+        {loading && (
+          <div className="text-center py-12">
+            <p className="text-[#7A6A53] text-lg">Loading events...</p>
+          </div>
+        )}
 
-        {/* Loading and Error States */}
-        {loading && <p className="text-center text-gray-600">Loading events...</p>}
-        {error && <p className="text-center text-red-600">{error}</p>}
-        {!loading && !error && filtered.length === 0 && (
-          <p className="text-center text-gray-600">No events found.</p>
+        {/* Error State */}
+        {error && (
+          <div className="text-center py-12">
+            <p className="text-red-600 mb-4">{error}</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="bg-[#948C75] text-white px-4 py-2 rounded-md hover:bg-[#7A6A53] transition"
+            >
+              Try Again
+            </button>
+          </div>
+        )}
+
+        {/* No Events State */}
+        {!loading && !error && events.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-[#7A6A53] text-lg">No upcoming events at this time.</p>
+            <p className="text-[#948C75] mt-2">Check back soon for new events!</p>
+          </div>
         )}
 
         {/* Events Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((event, idx) => (
-            <div
-              key={idx}
-              className={`bg-white rounded-xl shadow-md p-4 space-y-3 print:break-inside-avoid ${
-                !isUpcoming(event.Date) ? 'opacity-60' : ''
-              }`}
-            >
-              {/* Event Header */}
-              <div className="border-b border-gray-200 pb-2">
-                <h2 className="text-xl font-semibold text-gray-800 mb-1">{event.Name}</h2>
-                <p className="text-pink-700 font-medium text-sm">{event.Type}</p>
-              </div>
-
-              {/* Date and Time */}
-              <div className="space-y-1">
-                <p className="text-gray-600">
-                  <span className="font-medium">Date:</span> {formatDate(event.Date)}
-                </p>
-                {event.Time && (
-                  <p className="text-gray-600">
-                    <span className="font-medium">Time:</span> {event.Time}
-                  </p>
-                )}
-              </div>
-
-              {/* Location */}
-              {event.Location && (
-                <div className="space-y-1">
-                  <p className="text-gray-600">
-                    <span className="font-medium">Location:</span> {event.Location}
-                  </p>
+        {!loading && !error && events.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {events.map((event) => (
+              <div 
+                key={event.id} 
+                className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 space-y-4"
+              >
+                {/* Date Box */}
+                <div className="flex items-start justify-between">
+                  <div className="bg-[#948C75] text-white px-3 py-2 rounded-md text-center min-w-[80px]">
+                    <div className="text-sm font-semibold">
+                      {formatDateBox(event.start.dateTime || event.start.date || '')}
+                    </div>
+                  </div>
                   <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.Location)}`}
+                    href={event.htmlLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 underline text-sm hover:text-blue-800"
+                    className="text-[#99B2B7] hover:text-[#7A6A53] transition-colors"
                   >
-                    Get Directions
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
                   </a>
                 </div>
-              )}
 
-              {/* Description */}
-              {event.Description && (
-                <p className="text-gray-600 text-sm leading-relaxed">{event.Description}</p>
-              )}
-
-              {/* Contact Information */}
-              <div className="border-t border-gray-200 pt-2 space-y-1">
-                {event['Contact Name'] && (
-                  <p className="text-gray-600 text-sm">
-                    <span className="font-medium">Contact:</span> {event['Contact Name']}
-                  </p>
-                )}
-                {event.Email && (
-                  <p className="text-gray-600 text-sm">
-                    <span className="font-medium">Email:</span>{' '}
-                    <a
-                      href={`mailto:${event.Email}`}
-                      className="underline text-pink-600 hover:text-pink-800"
-                    >
-                      {event.Email}
-                    </a>
-                  </p>
-                )}
-              </div>
-
-              {/* Past Event Indicator */}
-              {!isUpcoming(event.Date) && (
-                <div className="bg-gray-100 text-gray-500 text-xs px-2 py-1 rounded text-center">
-                  Past Event
+                {/* Event Title */}
+                <h2 className="text-xl font-semibold text-[#7A6A53] leading-tight">
+                  {event.title}
+                </h2>
+                
+                {/* Time Information */}
+                <div className="space-y-2">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-[#99B2B7]">⏰</span>
+                    <span className="text-[#7A6A53] text-sm">
+                      {event.start.dateTime ? (
+                        <>
+                          {formatTime(event.start.dateTime)}
+                          {event.end.dateTime && event.end.dateTime !== event.start.dateTime && (
+                            <> - {formatTime(event.end.dateTime)}</>
+                          )}
+                        </>
+                      ) : (
+                        'All Day'
+                      )}
+                    </span>
+                  </div>
+                  
+                  {/* Location */}
+                  {event.location && (
+                    <div className="flex items-start space-x-2">
+                      <span className="text-[#99B2B7] mt-0.5">📍</span>
+                      <span className="text-[#7A6A53] text-sm leading-relaxed">
+                        {event.location}
+                      </span>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          ))}
-        </div>
 
-        {/* No Events Message */}
-        {!loading && !error && filtered.length === 0 && search && (
-          <div className="text-center py-8">
-            <p className="text-gray-600 mb-4">No events match your search.</p>
-            <button
-              onClick={() => handleSearch('')}
-              className="text-pink-600 underline hover:text-pink-800"
-            >
-              Clear search and show all events
-            </button>
+                {/* Description */}
+                {event.description && (
+                  <div className="pt-3 border-t border-gray-100">
+                    <p className="text-[#948C75] text-sm leading-relaxed">
+                      {event.description.length > 150 
+                        ? `${event.description.substring(0, 150)}...` 
+                        : event.description
+                      }
+                    </p>
+                  </div>
+                )}
+
+                {/* View in Calendar Button */}
+                <div className="pt-2">
+                  <a
+                    href={event.htmlLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block w-full bg-[#948C75] text-white text-center px-4 py-2 rounded-md hover:bg-[#7A6A53] transition-colors"
+                  >
+                    View in Calendar
+                  </a>
+                </div>
+              </div>
+            ))}
           </div>
         )}
       </div>
