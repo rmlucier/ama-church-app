@@ -36,7 +36,7 @@ export default function AboutPage() {
               </div>
               <div>
                 <h3 className="font-semibold text-[#948C75]">Biblical Truth</h3>
-                <p className="text-sm text-[#7A6A53]">We ground our work in Scripture, seeking wisdom and guidance from God's Word (2 Timothy 3:16)</p>
+                <p className="text-sm text-[#7A6A53]">We ground our work in Scripture, seeking wisdom and guidance from God&apos;s Word (2 Timothy 3:16)</p>
               </div>
               <div>
                 <h3 className="font-semibold text-[#948C75]">Commitment to the Great Commission</h3>
@@ -58,7 +58,7 @@ export default function AboutPage() {
             <div className="space-y-3">
               <div>
                 <h3 className="font-semibold text-[#948C75]">Servant Leadership</h3>
-                <p className="text-sm text-[#7A6A53]">We lead by serving others, following Christ's example (Matthew 20:28)</p>
+                <p className="text-sm text-[#7A6A53]">We lead by serving others, following Christ&apos;s example (Matthew 20:28)</p>
               </div>
               <div>
                 <h3 className="font-semibold text-[#948C75]">Biblical View of Marriage</h3>
@@ -70,7 +70,7 @@ export default function AboutPage() {
               </div>
               <div>
                 <h3 className="font-semibold text-[#948C75]">Kingdom-Minded Living</h3>
-                <p className="text-sm text-[#7A6A53]">We pursue God's Kingdom first in all things (Matthew 6:33)</p>
+                <p className="text-sm text-[#7A6A53]">We pursue God&apos;s Kingdom first in all things (Matthew 6:33)</p>
               </div>
               <div>
                 <h3 className="font-semibold text-[#948C75]">Encouragement</h3>
