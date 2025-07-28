@@ -3,6 +3,30 @@
 ## Overview
 This is a Next.js web application built for the Albion Ministerial Association (AMA) to connect churches and serve the Albion, MI community. The site features a modern, responsive design with a calming color palette and focuses on community service, church unity, and resource accessibility.
 
+## Organization Information
+
+### Mission Statement
+The Albion Ministerial Association exists to foster unity, shared purpose, and collaboration among churches. We support senior leaders and faith-based organizations in serving the community, advancing the message of Christ, fulfilling the Great Commission, and encouraging mutual support in both faith and action.
+
+### Vision Statement
+To see the churches of Albion walking in unity, empowered to transform lives through Christ-centered service, collaborative leadership, and support Spirit-led outreach that brings hope, healing, and revival to our community.
+
+### Core Values
+1. **Lordship of Jesus Christ** – We proclaim Christ as Lord and Savior (I Corinthians 12:3)
+2. **Prayerful Dependence** – We prioritize prayer as essential to ministry and life (Matthew 6:8)
+3. **Biblical Truth** - We ground our work in Scripture, seeking wisdom and guidance from God's Word (2 Timothy 3:16)
+4. **Commitment to the Great Commission** – We actively engage in making disciples of all nations (Matthew 28:19)
+5. **Unity Among Churches** – We strive for oneness across the Body of Christ in Albion and beyond (John 17:21)
+6. **Faithful Stewardship** – We commit to wisely managing the resources God has entrusted to us (1 Corinthians 4:2)
+7. **Supportive Leadership Fellowship** – We cultivate relationships and mutual support among senior leaders (Ephesians 4:11)
+8. **Servant Leadership** – We lead by serving others, following Christ's example (Matthew 20:28)
+9. **Biblical View of Marriage** – We affirm marriage as a covenant between one man and one woman (Genesis 1:28)
+10. **Great Commandment to Love** – We seek to love God wholly and our neighbors compassionately (Matthew 22:37)
+11. **Kingdom-Minded Living** – We pursue God's Kingdom first in all things (Matthew 6:33)
+12. **Encouragement** - We support and affirm leaders in their personal faith in Jesus Christ and ministry journey (Hebrews 10:24-25)
+13. **Community Impact** - We commit to tangible service that uplifts and transforms lives (Matthew 5:14-16)
+14. **Collaboration** - We partner to strengthen our impact and extend our reach (Ecclesiastes 4:9)
+
 ## Architecture
 - **Framework**: Next.js 14+ with App Router
 - **Styling**: Tailwind CSS with custom design tokens
@@ -32,9 +56,12 @@ This is a Next.js web application built for the Albion Ministerial Association (
 - **CTA Section**: Prominent call-to-action for those needing assistance
 
 ### 2. About Page (`/about`)
-- Simple, centered layout
-- Mission and Vision statements
-- Focused on unity and community service
+- **Layout**: Two-column grid for Mission/Vision, full-width Core Values section
+- **Content**: 
+  - Full Mission Statement
+  - Complete Vision Statement
+  - All 14 Core Values with scripture references
+- **Design**: Card-based layout with visual hierarchy
 
 ### 3. Churches Page (`/churches`)
 - **Data Source**: Google Sheets CSV integration
@@ -112,10 +139,20 @@ This is a Next.js web application built for the Albion Ministerial Association (
    - Dynamic direction links
 
 ## Content Management
-All dynamic content is managed through:
-- Google Sheets for church and resource data
-- Google Calendar for events
-- Static content in page components
+
+### Dynamic Content
+- **Churches Directory**: Google Sheets integration
+- **Resources/Help**: Google Sheets integration  
+- **Events**: Google Calendar API
+
+### Static Content Locations
+- **Mission Statement**: 
+  - Homepage: `app/page.tsx` (Mission Section)
+  - About Page: `app/about/page.tsx`
+- **Vision Statement**: About Page (`app/about/page.tsx`)
+- **Core Values**: About Page (`app/about/page.tsx`)
+- **Hero Tagline**: `app/components/HeroSection.tsx`
+- **Navigation**: `components/Navigation.tsx`
 
 ## Accessibility Features
 - Semantic HTML structure
@@ -142,3 +179,17 @@ Ready for deployment on Vercel or similar Next.js-compatible platforms with:
 - Environment variables for API keys
 - Static generation where possible
 - Dynamic routes for church/event details
+
+## Recent Updates (2025-07-28)
+1. **Mission Statement**: Updated to emphasize unity, leadership support, and Great Commission
+2. **Vision Statement**: Added focus on Spirit-led outreach and revival
+3. **Core Values**: Implemented all 14 values with biblical references
+4. **Hero Section**: Updated tagline to reflect leadership and collaboration focus
+5. **About Page**: Complete redesign with mission, vision, and core values
+
+## Future Content Updates
+To update organization content:
+1. **Mission/Vision**: Edit `app/about/page.tsx` and `app/page.tsx`
+2. **Core Values**: Edit `app/about/page.tsx`
+3. **Hero Tagline**: Edit `app/components/HeroSection.tsx`
+4. **Add Leadership Structure**: Create new section in About page when provided
