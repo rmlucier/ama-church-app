@@ -166,7 +166,7 @@ export default function Home() {
       </section>
 
       {/* Call-to-Action Section */}
-      <section className="bg-white py-16 lg:py-20">
+      <section className="bg-white py-16 lg:py-20 mx-6 rounded-xl shadow-md">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <h2 className="text-3xl lg:text-4xl text-heading mb-6">
             Need Support? Start Here.
