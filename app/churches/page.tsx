@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { fetchCsv } from '@/lib/fetchCsv';
+import { getChurchImage } from '@/lib/imagePlaceholders';
 
 const SHEET_URL =
   'https://docs.google.com/spreadsheets/d/e/2PACX-1vSFvwE_5w0OCJ1qh5U6KXfVcxGVspcT4jADr4waYdEfGmAZwdxPEVQ4Yw6TOTreHWmuH-V8yjs-wZ23/pub?gid=0&single=true&output=csv';
@@ -59,12 +60,12 @@ export default function ChurchesPage() {
   }, []);
 
   return (
-    <main className="bg-[#D5DED9] min-h-screen p-8">
+    <main className="bg-surface min-h-screen p-8">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-4 text-[#7A6A53]">
+        <h1 className="text-4xl font-bold text-center mb-4 text-heading">
           Find a Church in Albion
         </h1>
-        <p className="text-center text-[#7A6A53] mb-8">
+        <p className="text-center text-primary mb-8">
           Discover local churches and find a community that fits you.
         </p>
 
@@ -72,7 +73,7 @@ export default function ChurchesPage() {
         <div className="my-6 text-center">
           <button
             onClick={() => setShowMap((prev) => !prev)}
-            className="bg-[#948C75] text-white px-4 py-2 rounded-md hover:bg-[#7A6A53] transition"
+            className="btn-primary"
           >
             {showMap ? 'Hide Map' : 'View Church Map'}
           </button>
@@ -92,57 +93,73 @@ export default function ChurchesPage() {
         </div>
 
         {/* Feedback */}
-        {loading && <p className="text-center text-[#7A6A53]">Loading churches...</p>}
+        {loading && <p className="text-center text-primary">Loading churches...</p>}
         {error && <p className="text-center text-red-600">{error}</p>}
         {!loading && !error && churches.length === 0 && (
-          <p className="text-center text-[#7A6A53]">No churches found.</p>
+          <p className="text-center text-primary">No churches found.</p>
         )}
 
         {/* Church Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {churches.map((church, idx) => (
-            <div key={idx} className="bg-white rounded-xl shadow-md p-4 space-y-2 print:break-inside-avoid">
-              <h2 className="text-xl font-semibold text-[#7A6A53]">{church.Name}</h2>
-              <p className="text-[#948C75] font-medium">{church.Denomination}</p>
-              <p className="text-[#7A6A53]">{church.Address}</p>
-              {church['Service Times'] && (
-                <p className="text-[#7A6A53]">Service Times: {church['Service Times']}</p>
-              )}
-              {church.Pastor && <p className="text-[#7A6A53]">Pastor: {church.Pastor}</p>}
-              {church.Phone && <p className="text-[#7A6A53]">Phone: {church.Phone}</p>}
-              {church.Email && (
-                <button
-                  onClick={() => window.location.href = `mailto:${church.Email}`}
-                  className="w-full bg-[#948C75] text-white text-center px-3 py-2 rounded-md hover:bg-[#7A6A53] transition"
-                >
-                  Contact Pastor
-                </button>
-              )}
-              {church.Description && (
-                <p className="text-[#7A6A53] text-sm">{church.Description}</p>
-              )}
-              {church.Address && (
-                <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(church.Address)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block mt-2 bg-[#948C75] text-white text-center px-3 py-2 rounded-md hover:bg-[#7A6A53] transition"
-                >
-                  Get Directions
-                </a>
-              )}
-              {church.Website && (
-                <a
-                  href={church.Website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block bg-[#948C75] text-white text-center px-3 py-2 rounded-md hover:bg-[#7A6A53] transition"
-                >
-                  Visit Website
-                </a>
-              )}
-            </div>
-          ))}
+          {churches.map((church, idx) => {
+            const churchImage = getChurchImage(church.Denomination);
+            return (
+              <div key={idx} className="bg-white rounded-xl shadow-md overflow-hidden print:break-inside-avoid">
+                {/* Church Image */}
+                <div className={`relative ${churchImage.aspectRatio} overflow-hidden`}>
+                  <img
+                    src={churchImage.src}
+                    alt={churchImage.alt}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                
+                {/* Church Info */}
+                <div className="p-4 space-y-2">
+                  <h2 className="text-xl font-semibold text-primary">{church.Name}</h2>
+                  <p className="text-accent font-medium">{church.Denomination}</p>
+                  <p className="text-primary">{church.Address}</p>
+                  {church['Service Times'] && (
+                    <p className="text-primary">Service Times: {church['Service Times']}</p>
+                  )}
+                  {church.Pastor && <p className="text-primary">Pastor: {church.Pastor}</p>}
+                  {church.Phone && <p className="text-primary">Phone: {church.Phone}</p>}
+                  {church.Email && (
+                    <button
+                      onClick={() => window.location.href = `mailto:${church.Email}`}
+                      className="w-full btn-primary text-sm"
+                    >
+                      Contact Pastor
+                    </button>
+                  )}
+                  {church.Description && (
+                    <p className="text-primary text-sm">{church.Description}</p>
+                  )}
+                  {church.Address && (
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(church.Address)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block mt-2 btn-primary text-sm"
+                    >
+                      Get Directions
+                    </a>
+                  )}
+                  {church.Website && (
+                    <a
+                      href={church.Website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block btn-primary text-sm"
+                    >
+                      Visit Website
+                    </a>
+                  )}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </main>

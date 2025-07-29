@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -20,7 +21,7 @@ export function Sidebar() {
       <div className="p-6 flex-1">
         {/* Logo */}
         <Link href="/" className="block mb-8">
-          <h1 className="text-2xl font-bold text-[#7A6A53] hover:text-[#99B2B7] transition-colors">
+          <h1 className="text-2xl text-heading hover:text-secondary transition-colors">
             AMA
           </h1>
         </Link>
@@ -33,8 +34,8 @@ export function Sidebar() {
               href={href}
               className={`block px-4 py-3 rounded-lg transition-all duration-200 ${
                 pathname === href 
-                  ? 'bg-[#948C75] text-white font-semibold' 
-                  : 'text-[#7A6A53] hover:bg-[#D9CEB2] hover:text-[#7A6A53]'
+                  ? 'bg-accent text-white font-semibold' 
+                  : 'text-primary hover:bg-surface hover:text-primary'
               }`}
             >
               {label}
@@ -45,7 +46,7 @@ export function Sidebar() {
 
       {/* Footer in Sidebar */}
       <div className="p-6 border-t border-gray-200">
-        <div className="text-xs text-[#7A6A53] text-center">
+        <div className="text-xs text-primary text-center">
           © Albion Ministerial Association, {new Date().getFullYear()}<br />
           Made with love in Albion
         </div>
@@ -56,28 +57,71 @@ export function Sidebar() {
 
 export function MobileNav() {
   const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50 lg:hidden">
       <nav className="px-4 py-4">
         <div className="flex justify-between items-center">
-          <Link href="/" className="text-xl font-bold text-[#7A6A53]">
+          {/* Logo */}
+          <Link href="/" className="text-xl text-heading">
             AMA
           </Link>
-          <div className="flex space-x-2">
-            {navLinks.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className={`px-3 py-2 text-sm rounded-md transition-colors ${
-                  pathname === href 
-                    ? 'bg-[#948C75] text-white font-semibold' 
-                    : 'text-[#7A6A53] hover:bg-[#D9CEB2] hover:text-[#7A6A53]'
-                }`}
-              >
-                {label}
-              </Link>
-            ))}
+          
+          {/* Hamburger Button */}
+          <button
+            onClick={toggleMenu}
+            className="p-2 rounded-md text-primary hover:bg-surface transition-colors"
+            aria-label="Toggle menu"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+
+        {/* Dropdown Menu */}
+        <div
+          className={`transition-all duration-300 ease-in-out overflow-hidden ${
+            isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <div className="bg-white rounded-lg shadow-lg mt-4 border border-gray-100">
+            <nav className="py-2">
+              {navLinks.map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={closeMenu}
+                  className={`block px-4 py-3 text-sm font-medium transition-colors ${
+                    pathname === href 
+                      ? 'bg-accent text-white' 
+                      : 'text-primary hover:bg-surface hover:text-accent'
+                  }`}
+                >
+                  {label}
+                </Link>
+              ))}
+            </nav>
           </div>
         </div>
       </nav>

@@ -1,28 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-primary: #6c584c;
+  --color-secondary: #a98467;
+  --color-neutral: #f0ead2;
+  --color-accent: #adc178;
+  --color-surface: #dde5b6;
+  --font-sans: 'Space Grotesk', 'Geist', Arial, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Custom utility classes */
+.btn-primary {
+  @apply bg-accent text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 shadow-lg;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.btn-primary:hover {
+  @apply bg-secondary shadow-xl transform -translate-y-0.5;
+}
+
+.text-heading {
+  @apply font-sans font-bold text-primary;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply font-sans bg-neutral text-primary;
 }
 
 /* Prevent auto-linking of text content */

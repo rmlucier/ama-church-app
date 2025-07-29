@@ -1,7 +1,7 @@
 // Design tokens for AMA global design system
-export const primaryColor = '#7A6A53';
-export const secondaryColor = '#99B2B7';
-export const neutralColor = '#F5F5F2';
-export const accentColor = '#948C75'; // Used in current UI as a highlight
-export const surfaceColor = '#D5DED9'; // Used for cards/sections
+export const primaryColor = '#6c584c'; // Umber - for text and headings
+export const secondaryColor = '#a98467'; // Chamoisee - for secondary accents
+export const neutralColor = '#f0ead2'; // Parchment - for backgrounds
+export const accentColor = '#adc178'; // Olivine - for buttons and CTAs
+export const surfaceColor = '#dde5b6'; // Tea Green - for cards/sections
 export const fontFamily = `'Space Grotesk', 'Geist', Arial, sans-serif`; 
