@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { fetchGoogleCalendarEvents, GoogleCalendarEvent } from '@/lib/fetchGoogleCalendarEvents';
-import { getEventImage } from '@/lib/imagePlaceholders';
 
 export default function EventsPage() {
   const [events, setEvents] = useState<GoogleCalendarEvent[]>([]);
@@ -81,22 +80,11 @@ export default function EventsPage() {
         {!loading && !error && events.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {events.map((event) => {
-              const eventImage = getEventImage(event.title);
               return (
                 <div 
                   key={event.id} 
-                  className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+                  className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border-l-4 border-accent"
                 >
-                  {/* Event Image */}
-                  <div className={`relative ${eventImage.aspectRatio} overflow-hidden`}>
-                    <img
-                      src={eventImage.src}
-                      alt={eventImage.alt}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-                  
                   {/* Event Content */}
                   <div className="p-6 space-y-4">
                     {/* Date Box */}
