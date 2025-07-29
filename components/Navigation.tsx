@@ -79,11 +79,6 @@ export function MobileNav() {
     <header className="bg-white shadow-md sticky top-0 z-50 lg:hidden">
       <nav className="px-4 py-4">
         <div className="flex justify-between items-center">
-          {/* Logo */}
-          <Link href="/" className="text-xl text-heading">
-            AMA
-          </Link>
-          
           {/* Hamburger Button */}
           <button
             onClick={toggleMenu}
@@ -105,6 +100,21 @@ export function MobileNav() {
               />
             </svg>
           </button>
+          
+          {/* Logo */}
+          <Link href="/" className="text-xl text-heading">
+            AMA
+          </Link>
+          
+          {/* Donate Button */}
+          <a
+            href="https://cash.app/$AMA1Albion"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-accent text-white text-sm font-medium px-3 py-2 rounded-full shadow-md hover:bg-primary transition-colors"
+          >
+            Donate
+          </a>
         </div>
 
         {/* Dropdown Menu */}

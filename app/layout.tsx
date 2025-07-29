@@ -17,12 +17,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Mobile Navigation */}
         <MobileNav />
         
-        {/* Donate Button - Fixed to top-right corner */}
+        {/* Donate Button - Fixed to top-right corner (desktop only) */}
         <a
           href="https://cash.app/$AMA1Albion"
           target="_blank"
           rel="noopener noreferrer"
-          className="fixed top-4 right-4 z-50 bg-accent/90 text-white text-sm font-medium px-4 py-2 rounded-full shadow-lg hover:bg-accent hover:scale-105 transition-all duration-200"
+          className="fixed top-4 right-4 z-50 bg-accent/90 text-white text-sm font-medium px-4 py-2 rounded-full shadow-lg hover:bg-accent hover:scale-105 transition-all duration-200 hidden lg:block"
         >
           Donate
         </a>
