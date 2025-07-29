@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import HeroSection from './components/HeroSection';
-import { getChurchImage } from '@/lib/imagePlaceholders';
+import ChurchImage from '@/components/ChurchImage';
 import { fetchCsv } from '@/lib/fetchCsv';
 
 const SHEET_URL =
@@ -102,7 +102,6 @@ export default function Home() {
           ) : churches.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {churches.map((church, index) => {
-                const churchImage = getChurchImage(church.Denomination);
                 return (
                   <div 
                     key={index}
@@ -113,14 +112,11 @@ export default function Home() {
                       AMA MEMBER
                     </div>
                     {/* Church Image */}
-                    <div className={`relative ${churchImage.aspectRatio} overflow-hidden`}>
-                      <img
-                        src={churchImage.src}
-                        alt={churchImage.alt}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    </div>
+                    <ChurchImage
+                      churchName={church.Name}
+                      churchAddress={church.Address}
+                      denomination={church.Denomination}
+                    />
                     
                     {/* Church Info */}
                     <div className="p-6">

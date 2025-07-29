@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { fetchCsv } from '@/lib/fetchCsv';
-import { getChurchImage } from '@/lib/imagePlaceholders';
+import ChurchImage from '@/components/ChurchImage';
 
 const SHEET_URL =
   'https://docs.google.com/spreadsheets/d/e/2PACX-1vSFvwE_5w0OCJ1qh5U6KXfVcxGVspcT4jADr4waYdEfGmAZwdxPEVQ4Yw6TOTreHWmuH-V8yjs-wZ23/pub?gid=0&single=true&output=csv';
@@ -114,7 +114,6 @@ export default function ChurchesPage() {
                   <p className="text-primary mb-6">Churches united in the Albion Ministerial Association</p>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {amaMembers.map((church, idx) => {
-                      const churchImage = getChurchImage(church.Denomination);
                       return (
                         <div key={`ama-${idx}`} className="bg-white rounded-xl shadow-md overflow-hidden print:break-inside-avoid border-2 border-accent">
                           {/* AMA Member Badge */}
@@ -122,14 +121,11 @@ export default function ChurchesPage() {
                             AMA MEMBER
                           </div>
                           {/* Church Image */}
-                          <div className={`relative ${churchImage.aspectRatio} overflow-hidden`}>
-                            <img
-                              src={churchImage.src}
-                              alt={churchImage.alt}
-                              className="w-full h-full object-cover"
-                              loading="lazy"
-                            />
-                          </div>
+                          <ChurchImage
+                            churchName={church.Name}
+                            churchAddress={church.Address}
+                            denomination={church.Denomination}
+                          />
                           
                           {/* Church Info */}
                           <div className="p-4 space-y-2">
@@ -192,18 +188,14 @@ export default function ChurchesPage() {
                   <p className="text-primary mb-6">Additional churches serving our community</p>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {nonMembers.map((church, idx) => {
-                      const churchImage = getChurchImage(church.Denomination);
                       return (
                         <div key={`other-${idx}`} className="bg-white rounded-xl shadow-md overflow-hidden print:break-inside-avoid">
                           {/* Church Image */}
-                          <div className={`relative ${churchImage.aspectRatio} overflow-hidden`}>
-                            <img
-                              src={churchImage.src}
-                              alt={churchImage.alt}
-                              className="w-full h-full object-cover"
-                              loading="lazy"
-                            />
-                          </div>
+                          <ChurchImage
+                            churchName={church.Name}
+                            churchAddress={church.Address}
+                            denomination={church.Denomination}
+                          />
                           
                           {/* Church Info */}
                           <div className="p-4 space-y-2">
