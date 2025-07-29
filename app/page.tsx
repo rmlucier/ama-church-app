@@ -19,6 +19,7 @@ type Church = {
   Phone?: string;
   Description?: string;
   'AMA Member?': string;
+  'Alt Photo'?: string;
 };
 
 export default function Home() {
@@ -116,6 +117,7 @@ export default function Home() {
                       churchName={church.Name}
                       churchAddress={church.Address}
                       denomination={church.Denomination}
+                      altPhoto={church['Alt Photo']}
                     />
                     
                     {/* Church Info */}

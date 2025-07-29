@@ -18,6 +18,7 @@ type Church = {
   Phone?: string;
   Description?: string;
   'AMA Member?': string;
+  'Alt Photo'?: string;
 };
 
 // Helper function to sanitize text and prevent auto-linking
@@ -125,6 +126,7 @@ export default function ChurchesPage() {
                             churchName={church.Name}
                             churchAddress={church.Address}
                             denomination={church.Denomination}
+                            altPhoto={church['Alt Photo']}
                           />
                           
                           {/* Church Info */}
@@ -195,6 +197,7 @@ export default function ChurchesPage() {
                             churchName={church.Name}
                             churchAddress={church.Address}
                             denomination={church.Denomination}
+                            altPhoto={church['Alt Photo']}
                           />
                           
                           {/* Church Info */}
