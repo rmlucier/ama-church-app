@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import HeroSection from './components/HeroSection';
 import ChurchImage from '@/components/ChurchImage';
 import { fetchCsv } from '@/lib/fetchCsv';
@@ -148,18 +149,18 @@ export default function Home() {
       <section className="py-16 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white shadow-md rounded-xl p-6 hover:shadow-lg transition-shadow">
+            <Link href="/about" className="bg-white shadow-md rounded-xl p-6 hover:shadow-lg transition-shadow block hover:scale-105 transform duration-200">
               <h2 className="text-xl font-semibold mb-3 text-primary">About AMA</h2>
               <p className="text-primary">Learn more about our mission and how we serve Albion.</p>
-            </div>
-            <div className="bg-white shadow-md rounded-xl p-6 hover:shadow-lg transition-shadow">
+            </Link>
+            <Link href="/churches" className="bg-white shadow-md rounded-xl p-6 hover:shadow-lg transition-shadow block hover:scale-105 transform duration-200">
               <h2 className="text-xl font-semibold mb-3 text-primary">Find a Church</h2>
               <p className="text-primary">Discover local churches and find the right fit for you.</p>
-            </div>
-            <div className="bg-white shadow-md rounded-xl p-6 hover:shadow-lg transition-shadow">
+            </Link>
+            <Link href="/help" className="bg-white shadow-md rounded-xl p-6 hover:shadow-lg transition-shadow block hover:scale-105 transform duration-200">
               <h2 className="text-xl font-semibold mb-3 text-primary">Get Help</h2>
               <p className="text-primary">Find resources for food, shelter, clothing, and more.</p>
-            </div>
+            </Link>
           </div>
         </div>
       </section>
