@@ -92,7 +92,7 @@ export default function DonatePage() {
                       </p>
                     </div>
                     <p className="text-xs text-primary mt-2">
-                      Please make checks payable to "Albion Ministerial Association"
+                      Please make checks payable to &quot;Albion Ministerial Association&quot;
                     </p>
                   </div>
                 </div>
@@ -141,7 +141,7 @@ export default function DonatePage() {
         <div className="bg-surface p-8 rounded-xl shadow-md mt-8 text-center">
           <h2 className="text-2xl font-semibold mb-4 text-primary">Questions About Donating?</h2>
           <p className="text-primary mb-6">
-            We're here to help! Contact us for more information about how your donation will be used 
+            We&apos;re here to help! Contact us for more information about how your donation will be used 
             or if you need assistance with your contribution.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

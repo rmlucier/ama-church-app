@@ -9,7 +9,7 @@ export default function VolunteerPage() {
           <h2 className="text-2xl font-semibold mb-4 text-primary">Join Us in Transforming Albion</h2>
           <p className="text-lg text-primary max-w-3xl mx-auto">
             The Albion Ministerial Association is always looking for passionate individuals who want to make a 
-            difference in our community. Whether you're looking to volunteer, partner with us, or get your 
+            difference in our community. Whether you&apos;re looking to volunteer, partner with us, or get your 
             church involved, there are many ways to join our mission.
           </p>
         </div>

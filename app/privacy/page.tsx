@@ -12,7 +12,7 @@ export default function PrivacyPage() {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4 text-primary">Overview</h2>
             <p className="text-primary mb-4">
-              The Albion Ministerial Association ("AMA," "we," "us," or "our") is committed to protecting your privacy. 
+              The Albion Ministerial Association (&quot;AMA,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) is committed to protecting your privacy. 
               This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website 
               or interact with our services.
             </p>
@@ -55,7 +55,7 @@ export default function PrivacyPage() {
               except in the following circumstances:
             </p>
             <ul className="list-disc pl-6 space-y-2 text-primary">
-              <li>When connecting you with member churches or community resources you've requested</li>
+              <li>When connecting you with member churches or community resources you&apos;ve requested</li>
               <li>When required by law or to protect our rights and safety</li>
               <li>With trusted service providers who assist in operating our website (under confidentiality agreements)</li>
             </ul>

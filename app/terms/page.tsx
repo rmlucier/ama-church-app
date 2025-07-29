@@ -12,8 +12,8 @@ export default function TermsPage() {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4 text-primary">Agreement to Terms</h2>
             <p className="text-primary mb-4">
-              By accessing and using the Albion Ministerial Association website (the "Service"), you agree to be bound 
-              by these Terms of Use ("Terms"). If you disagree with any part of these terms, you may not access the Service.
+              By accessing and using the Albion Ministerial Association website (the &quot;Service&quot;), you agree to be bound 
+              by these Terms of Use (&quot;Terms&quot;). If you disagree with any part of these terms, you may not access the Service.
             </p>
           </section>
 
@@ -40,7 +40,7 @@ export default function TermsPage() {
                   <li>In any way that violates any applicable federal, state, local, or international law or regulation</li>
                   <li>To harass, abuse, insult, harm, defame, slander, disparage, intimidate, or discriminate</li>
                   <li>To submit false or misleading information</li>
-                  <li>To engage in any other conduct that restricts or inhibits anyone's use or enjoyment of the Service</li>
+                  <li>To engage in any other conduct that restricts or inhibits anyone&apos;s use or enjoyment of the Service</li>
                 </ul>
               </div>
             </div>
@@ -87,7 +87,7 @@ export default function TermsPage() {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4 text-primary">Disclaimer of Warranties</h2>
             <p className="text-primary mb-4">
-              The information on this Service is provided on an "as is" basis. To the fullest extent permitted by law, 
+              The information on this Service is provided on an &quot;as is&quot; basis. To the fullest extent permitted by law, 
               the Albion Ministerial Association excludes all representations, warranties, and conditions relating to our Service.
             </p>
           </section>
