@@ -51,8 +51,9 @@ To enable APIs:
 ## How It Works
 
 The site attempts to load church images in this order:
-1. **Google Street View**: Shows the street-level view of the church address
-2. **Placeholder Images**: Falls back to denomination-based stock photos if Street View fails
+1. **Google Places Photos**: Actual photos from the church's Google Maps profile (uploaded by users)
+2. **Google Street View**: Street-level view of the church address (if no Places photos exist)
+3. **Placeholder Images**: Falls back to denomination-based stock photos if both fail
 
 ## Costs
 - Google provides $200 free credit monthly

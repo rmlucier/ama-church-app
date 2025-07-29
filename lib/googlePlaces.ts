@@ -71,7 +71,7 @@ export async function getChurchPhoto(churchName: string, churchAddress: string):
   }
 }
 
-// Client-side version that uses a proxy to avoid CORS issues
+// Client-side version using Place Photos
 export async function getChurchPhotoClient(churchName: string, churchAddress: string): Promise<string | null> {
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY;
   
@@ -89,17 +89,33 @@ export async function getChurchPhotoClient(churchName: string, churchAddress: st
   }
 
   try {
-    // For client-side, we'll use the Maps Embed API which doesn't have CORS issues
-    // This returns a static map image of the location
-    const query = encodeURIComponent(`${churchName} ${churchAddress}`);
-    const mapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${query}&zoom=17&size=800x600&maptype=roadmap&markers=color:red%7C${query}&key=${apiKey}`;
+    // Use a proxy endpoint to avoid CORS issues
+    const response = await fetch('/api/places/photo', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        churchName,
+        churchAddress,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch photo');
+    }
+
+    const data = await response.json();
     
-    // Cache the result
-    imageCache.set(cacheKey, mapUrl);
+    if (data.photoUrl) {
+      // Cache the result
+      imageCache.set(cacheKey, data.photoUrl);
+      return data.photoUrl;
+    }
     
-    return mapUrl;
+    return null;
   } catch (error) {
-    console.error(`Error fetching map for ${churchName}:`, error);
+    console.error(`Error fetching photo for ${churchName}:`, error);
     return null;
   }
 }
