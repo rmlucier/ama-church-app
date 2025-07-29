@@ -17,6 +17,7 @@ type Church = {
   Email?: string;
   Phone?: string;
   Description?: string;
+  'AMA Member?': string;
 };
 
 // Helper function to sanitize text and prevent auto-linking
@@ -99,68 +100,162 @@ export default function ChurchesPage() {
           <p className="text-center text-primary">No churches found.</p>
         )}
 
-        {/* Church Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {churches.map((church, idx) => {
-            const churchImage = getChurchImage(church.Denomination);
-            return (
-              <div key={idx} className="bg-white rounded-xl shadow-md overflow-hidden print:break-inside-avoid">
-                {/* Church Image */}
-                <div className={`relative ${churchImage.aspectRatio} overflow-hidden`}>
-                  <img
-                    src={churchImage.src}
-                    alt={churchImage.alt}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
+        {/* Separate churches into AMA members and non-members */}
+        {(() => {
+          const amaMembers = churches.filter(church => church['AMA Member?']?.toUpperCase() === 'YES');
+          const nonMembers = churches.filter(church => church['AMA Member?']?.toUpperCase() !== 'YES');
+          
+          return (
+            <>
+              {/* AMA Member Churches */}
+              {amaMembers.length > 0 && (
+                <div className="mb-12">
+                  <h2 className="text-2xl font-bold text-primary mb-4">AMA Member Churches</h2>
+                  <p className="text-primary mb-6">Churches united in the Albion Ministerial Association</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {amaMembers.map((church, idx) => {
+                      const churchImage = getChurchImage(church.Denomination);
+                      return (
+                        <div key={`ama-${idx}`} className="bg-white rounded-xl shadow-md overflow-hidden print:break-inside-avoid border-2 border-accent">
+                          {/* AMA Member Badge */}
+                          <div className="bg-accent text-white text-xs font-semibold px-3 py-1 text-center">
+                            AMA MEMBER
+                          </div>
+                          {/* Church Image */}
+                          <div className={`relative ${churchImage.aspectRatio} overflow-hidden`}>
+                            <img
+                              src={churchImage.src}
+                              alt={churchImage.alt}
+                              className="w-full h-full object-cover"
+                              loading="lazy"
+                            />
+                          </div>
+                          
+                          {/* Church Info */}
+                          <div className="p-4 space-y-2">
+                            <h2 className="text-xl font-semibold text-primary">{church.Name}</h2>
+                            <p className="text-accent font-medium">{church.Denomination}</p>
+                            <p className="text-primary">{church.Address}</p>
+                            {church['Service Times'] && (
+                              <p className="text-primary">Service Times: {church['Service Times']}</p>
+                            )}
+                            {church.Pastor && <p className="text-primary">Pastor: {church.Pastor}</p>}
+                            {church.Phone && <p className="text-primary">Phone: {church.Phone}</p>}
+                            {church.Email && (
+                              <button
+                                onClick={() => window.location.href = `mailto:${church.Email}`}
+                                className="w-full btn-primary text-sm"
+                              >
+                                Contact Pastor
+                              </button>
+                            )}
+                            {church.Description && (
+                              <p className="text-primary text-sm">{church.Description}</p>
+                            )}
+                            {church.Address && (
+                              <a
+                                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(church.Address)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block mt-2 btn-primary text-sm"
+                              >
+                                Get Directions
+                              </a>
+                            )}
+                            {church.Website && (
+                              <a
+                                href={church.Website}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block btn-primary text-sm"
+                              >
+                                Visit Website
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-                
-                {/* Church Info */}
-                <div className="p-4 space-y-2">
-                  <h2 className="text-xl font-semibold text-primary">{church.Name}</h2>
-                  <p className="text-accent font-medium">{church.Denomination}</p>
-                  <p className="text-primary">{church.Address}</p>
-                  {church['Service Times'] && (
-                    <p className="text-primary">Service Times: {church['Service Times']}</p>
-                  )}
-                  {church.Pastor && <p className="text-primary">Pastor: {church.Pastor}</p>}
-                  {church.Phone && <p className="text-primary">Phone: {church.Phone}</p>}
-                  {church.Email && (
-                    <button
-                      onClick={() => window.location.href = `mailto:${church.Email}`}
-                      className="w-full btn-primary text-sm"
-                    >
-                      Contact Pastor
-                    </button>
-                  )}
-                  {church.Description && (
-                    <p className="text-primary text-sm">{church.Description}</p>
-                  )}
-                  {church.Address && (
-                    <a
-                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(church.Address)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block mt-2 btn-primary text-sm"
-                    >
-                      Get Directions
-                    </a>
-                  )}
-                  {church.Website && (
-                    <a
-                      href={church.Website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block btn-primary text-sm"
-                    >
-                      Visit Website
-                    </a>
-                  )}
+              )}
+
+              {/* Divider */}
+              {amaMembers.length > 0 && nonMembers.length > 0 && (
+                <hr className="my-12 border-t-2 border-surface" />
+              )}
+
+              {/* Other Churches */}
+              {nonMembers.length > 0 && (
+                <div>
+                  <h2 className="text-2xl font-bold text-primary mb-4">Other Churches in Albion</h2>
+                  <p className="text-primary mb-6">Additional churches serving our community</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {nonMembers.map((church, idx) => {
+                      const churchImage = getChurchImage(church.Denomination);
+                      return (
+                        <div key={`other-${idx}`} className="bg-white rounded-xl shadow-md overflow-hidden print:break-inside-avoid">
+                          {/* Church Image */}
+                          <div className={`relative ${churchImage.aspectRatio} overflow-hidden`}>
+                            <img
+                              src={churchImage.src}
+                              alt={churchImage.alt}
+                              className="w-full h-full object-cover"
+                              loading="lazy"
+                            />
+                          </div>
+                          
+                          {/* Church Info */}
+                          <div className="p-4 space-y-2">
+                            <h2 className="text-xl font-semibold text-primary">{church.Name}</h2>
+                            <p className="text-accent font-medium">{church.Denomination}</p>
+                            <p className="text-primary">{church.Address}</p>
+                            {church['Service Times'] && (
+                              <p className="text-primary">Service Times: {church['Service Times']}</p>
+                            )}
+                            {church.Pastor && <p className="text-primary">Pastor: {church.Pastor}</p>}
+                            {church.Phone && <p className="text-primary">Phone: {church.Phone}</p>}
+                            {church.Email && (
+                              <button
+                                onClick={() => window.location.href = `mailto:${church.Email}`}
+                                className="w-full btn-primary text-sm"
+                              >
+                                Contact Pastor
+                              </button>
+                            )}
+                            {church.Description && (
+                              <p className="text-primary text-sm">{church.Description}</p>
+                            )}
+                            {church.Address && (
+                              <a
+                                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(church.Address)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block mt-2 btn-primary text-sm"
+                              >
+                                Get Directions
+                              </a>
+                            )}
+                            {church.Website && (
+                              <a
+                                href={church.Website}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block btn-primary text-sm"
+                              >
+                                Visit Website
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              )}
+            </>
+          );
+        })()}
       </div>
     </main>
   );

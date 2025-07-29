@@ -1,41 +1,46 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import HeroSection from './components/HeroSection';
 import { getChurchImage } from '@/lib/imagePlaceholders';
+import { fetchCsv } from '@/lib/fetchCsv';
 
-// Placeholder church data
-const churches = [
-  {
-    name: "New Hope Church",
-    denomination: "Baptist",
-    location: "Downtown Albion"
-  },
-  {
-    name: "Grace Community Church",
-    denomination: "Non-denominational",
-    location: "West Side"
-  },
-  {
-    name: "First United Methodist",
-    denomination: "Methodist",
-    location: "Historic District"
-  },
-  {
-    name: "St. Mary's Catholic Church",
-    denomination: "Catholic",
-    location: "East Albion"
-  },
-  {
-    name: "Albion Presbyterian",
-    denomination: "Presbyterian",
-    location: "North Side"
-  },
-  {
-    name: "Faith Lutheran Church",
-    denomination: "Lutheran",
-    location: "South Albion"
-  }
-];
+const SHEET_URL =
+  'https://docs.google.com/spreadsheets/d/e/2PACX-1vSFvwE_5w0OCJ1qh5U6KXfVcxGVspcT4jADr4waYdEfGmAZwdxPEVQ4Yw6TOTreHWmuH-V8yjs-wZ23/pub?gid=0&single=true&output=csv';
+
+type Church = {
+  Name: string;
+  Denomination: string;
+  Address: string;
+  'Service Times': string;
+  Pastor: string;
+  Website?: string;
+  Email?: string;
+  Phone?: string;
+  Description?: string;
+  'AMA Member?': string;
+};
 
 export default function Home() {
+  const [churches, setChurches] = useState<Church[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const data = await fetchCsv<Church>(SHEET_URL);
+        // Filter only AMA members for homepage
+        const amaMembers = data.filter(church => church['AMA Member?']?.toUpperCase() === 'YES');
+        setChurches(amaMembers.slice(0, 6)); // Show first 6 AMA members
+      } catch {
+        // If loading fails, don't show error on homepage
+        setChurches([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadData();
+  }, []);
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -90,40 +95,54 @@ export default function Home() {
           </div>
 
           {/* Church Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {churches.map((church, index) => {
-              const churchImage = getChurchImage(church.denomination);
-              return (
-                <div 
-                  key={index}
-                  className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
-                >
-                  {/* Church Image */}
-                  <div className={`relative ${churchImage.aspectRatio} overflow-hidden`}>
-                    <img
-                      src={churchImage.src}
-                      alt={churchImage.alt}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
+          {loading ? (
+            <div className="text-center py-12">
+              <p className="text-primary">Loading member churches...</p>
+            </div>
+          ) : churches.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {churches.map((church, index) => {
+                const churchImage = getChurchImage(church.Denomination);
+                return (
+                  <div 
+                    key={index}
+                    className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border-2 border-accent"
+                  >
+                    {/* AMA Member Badge */}
+                    <div className="bg-accent text-white text-xs font-semibold px-3 py-1 text-center">
+                      AMA MEMBER
+                    </div>
+                    {/* Church Image */}
+                    <div className={`relative ${churchImage.aspectRatio} overflow-hidden`}>
+                      <img
+                        src={churchImage.src}
+                        alt={churchImage.alt}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    
+                    {/* Church Info */}
+                    <div className="p-6">
+                      <h3 className="text-xl font-semibold text-primary mb-2">
+                        {church.Name}
+                      </h3>
+                      <p className="text-accent font-medium mb-3">
+                        {church.Denomination}
+                      </p>
+                      <p className="text-primary text-sm">
+                        {church.Address}
+                      </p>
+                    </div>
                   </div>
-                  
-                  {/* Church Info */}
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-primary mb-2">
-                      {church.name}
-                    </h3>
-                    <p className="text-accent font-medium mb-3">
-                      {church.denomination}
-                    </p>
-                    <p className="text-primary text-sm">
-                      {church.location}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-primary">Member churches information coming soon.</p>
+            </div>
+          )}
         </div>
       </section>
       
