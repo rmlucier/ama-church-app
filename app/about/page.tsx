@@ -93,31 +93,63 @@ export default function AboutPage() {
           <h2 className="text-3xl font-semibold mb-6 text-primary text-center">Leadership Structure</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-surface p-6 rounded-lg">
-              <h3 className="text-xl font-semibold text-primary mb-2">President</h3>
-              <p className="text-accent font-medium mb-2">Apostle Ruby Coats</p>
-              <p className="text-sm text-primary mb-3">Founder, Kingdom Equipping Training Center Church</p>
-              <p className="text-sm text-primary">The President serves as the chief executive officer of the Association, presiding over all official meetings and representing the Association at community events and functions as necessary.</p>
+              {/* Image Placeholder */}
+              <div className="w-24 h-24 bg-white rounded-full mx-auto mb-4 flex items-center justify-center border-2 border-accent">
+                <svg className="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+              <div className="text-center">
+                <h3 className="text-xl font-semibold text-primary mb-2">President</h3>
+                <p className="text-accent font-medium mb-2">Apostle Ruby Coats</p>
+                <p className="text-sm text-primary mb-3">Founder, Kingdom Equipping Training Center Church</p>
+                <p className="text-sm text-primary">The President serves as the chief executive officer of the Association, presiding over all official meetings and representing the Association at community events and functions as necessary.</p>
+              </div>
             </div>
 
             <div className="bg-surface p-6 rounded-lg">
-              <h3 className="text-xl font-semibold text-primary mb-2">Vice President</h3>
-              <p className="text-accent font-medium mb-2">TBA</p>
-              <p className="text-sm text-primary mb-3"></p>
-              <p className="text-sm text-primary">In the absence of the President, the Vice President assumes the duties of presiding over meetings. Additionally, the Vice President is primarily responsible for assisting with the planning and implementation of special programs organized by the Association.</p>
+              {/* Image Placeholder */}
+              <div className="w-24 h-24 bg-white rounded-full mx-auto mb-4 flex items-center justify-center border-2 border-accent">
+                <svg className="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+              <div className="text-center">
+                <h3 className="text-xl font-semibold text-primary mb-2">Vice President</h3>
+                <p className="text-accent font-medium mb-2">TBA</p>
+                <p className="text-sm text-primary mb-3"></p>
+                <p className="text-sm text-primary">In the absence of the President, the Vice President assumes the duties of presiding over meetings. Additionally, the Vice President is primarily responsible for assisting with the planning and implementation of special programs organized by the Association.</p>
+              </div>
             </div>
 
             <div className="bg-surface p-6 rounded-lg">
-              <h3 className="text-xl font-semibold text-primary mb-2">Treasurer</h3>
-              <p className="text-accent font-medium mb-2">Pastor Paul Keohn</p>
-              <p className="text-sm text-primary mb-3">Senior Pastor of St. Paul Lutheran Church</p>
-              <p className="text-sm text-primary">The Treasurer is entrusted with receiving, managing, and securely maintaining all financial assets of the Corporation and its committees. Disbursement of funds is carried out solely under the direction and authorization of the Board.</p>
+              {/* Image Placeholder */}
+              <div className="w-24 h-24 bg-white rounded-full mx-auto mb-4 flex items-center justify-center border-2 border-accent">
+                <svg className="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+              <div className="text-center">
+                <h3 className="text-xl font-semibold text-primary mb-2">Treasurer</h3>
+                <p className="text-accent font-medium mb-2">Pastor Paul Keohn</p>
+                <p className="text-sm text-primary mb-3">Senior Pastor of St. Paul Lutheran Church</p>
+                <p className="text-sm text-primary">The Treasurer is entrusted with receiving, managing, and securely maintaining all financial assets of the Corporation and its committees. Disbursement of funds is carried out solely under the direction and authorization of the Board.</p>
+              </div>
             </div>
 
             <div className="bg-surface p-6 rounded-lg">
-              <h3 className="text-xl font-semibold text-primary mb-2">Secretary</h3>
-              <p className="text-accent font-medium mb-2">Elvarane Showers</p>
-              <p className="text-sm text-primary mb-3">Elder with Bread of Life Ministries</p>
-              <p className="text-sm text-primary">The Secretary maintains accurate and properly archived records of all meetings of the Executive Committee and the Corporation. These records are signed, preserved, and transferred to the succeeding Secretary to ensure continuity and transparency.</p>
+              {/* Image Placeholder */}
+              <div className="w-24 h-24 bg-white rounded-full mx-auto mb-4 flex items-center justify-center border-2 border-accent">
+                <svg className="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+              <div className="text-center">
+                <h3 className="text-xl font-semibold text-primary mb-2">Secretary</h3>
+                <p className="text-accent font-medium mb-2">Elvarane Showers</p>
+                <p className="text-sm text-primary mb-3">Elder with Bread of Life Ministries</p>
+                <p className="text-sm text-primary">The Secretary maintains accurate and properly archived records of all meetings of the Executive Committee and the Corporation. These records are signed, preserved, and transferred to the succeeding Secretary to ensure continuity and transparency.</p>
+              </div>
             </div>
           </div>
         </section>
