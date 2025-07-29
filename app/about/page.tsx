@@ -87,6 +87,40 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
+
+        {/* Leadership Structure Section */}
+        <section className="bg-white p-8 rounded-xl shadow-md mt-8">
+          <h2 className="text-3xl font-semibold mb-6 text-primary text-center">Leadership Structure</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-surface p-6 rounded-lg">
+              <h3 className="text-xl font-semibold text-primary mb-2">President</h3>
+              <p className="text-accent font-medium mb-2">Apostle Ruby Coats</p>
+              <p className="text-sm text-primary mb-3">Founder, Kingdom Equipping Training Center Church</p>
+              <p className="text-sm text-primary">The President serves as the chief executive officer of the Association, presiding over all official meetings and representing the Association at community events and functions as necessary.</p>
+            </div>
+
+            <div className="bg-surface p-6 rounded-lg">
+              <h3 className="text-xl font-semibold text-primary mb-2">Vice President</h3>
+              <p className="text-accent font-medium mb-2">TBA</p>
+              <p className="text-sm text-primary mb-3"></p>
+              <p className="text-sm text-primary">In the absence of the President, the Vice President assumes the duties of presiding over meetings. Additionally, the Vice President is primarily responsible for assisting with the planning and implementation of special programs organized by the Association.</p>
+            </div>
+
+            <div className="bg-surface p-6 rounded-lg">
+              <h3 className="text-xl font-semibold text-primary mb-2">Treasurer</h3>
+              <p className="text-accent font-medium mb-2">Pastor Paul Keohn</p>
+              <p className="text-sm text-primary mb-3">Senior Pastor of St. Paul Lutheran Church</p>
+              <p className="text-sm text-primary">The Treasurer is entrusted with receiving, managing, and securely maintaining all financial assets of the Corporation and its committees. Disbursement of funds is carried out solely under the direction and authorization of the Board.</p>
+            </div>
+
+            <div className="bg-surface p-6 rounded-lg">
+              <h3 className="text-xl font-semibold text-primary mb-2">Secretary</h3>
+              <p className="text-accent font-medium mb-2">Elvarane Showers</p>
+              <p className="text-sm text-primary mb-3">Elder with Bread of Life Ministries</p>
+              <p className="text-sm text-primary">The Secretary maintains accurate and properly archived records of all meetings of the Executive Committee and the Corporation. These records are signed, preserved, and transferred to the succeeding Secretary to ensure continuity and transparency.</p>
+            </div>
+          </div>
+        </section>
       </div>
     </main>
   );

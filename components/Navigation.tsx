@@ -10,6 +10,8 @@ const navLinks = [
   { href: '/churches', label: 'Churches' },
   { href: '/help', label: 'Help' },
   { href: '/events', label: 'Events' },
+  { href: '/volunteer', label: 'Get Involved' },
+  { href: '/donate', label: 'Donate' },
   { href: '/contact', label: 'Contact' },
 ];
 
@@ -46,9 +48,15 @@ export function Sidebar() {
 
       {/* Footer in Sidebar */}
       <div className="p-6 border-t border-gray-200">
-        <div className="text-xs text-primary text-center">
-          © Albion Ministerial Association, {new Date().getFullYear()}<br />
-          Made with love in Albion
+        <div className="text-xs text-primary text-center space-y-2">
+          <div className="flex justify-center space-x-4">
+            <Link href="/privacy" className="hover:text-accent transition-colors">Privacy</Link>
+            <Link href="/terms" className="hover:text-accent transition-colors">Terms</Link>
+          </div>
+          <div>
+            © Albion Ministerial Association, {new Date().getFullYear()}<br />
+            Made with love in Albion
+          </div>
         </div>
       </div>
     </aside>
