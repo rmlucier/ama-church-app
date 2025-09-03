@@ -2,14 +2,29 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { imagePlaceholders } from '@/lib/imagePlaceholders';
+
+// Direct image paths for reliability
+const heroImages = [
+  {
+    src: '/images/hero/ama-3-of-11.jpeg',
+    alt: 'Albion Ministerial Association National Day of Prayer event'
+  },
+  {
+    src: '/images/hero/ama-10-of-11.jpeg', 
+    alt: 'AMA community gathering and fellowship'
+  },
+  {
+    src: '/images/hero/ama-11-of-11.jpeg',
+    alt: 'AMA leadership and community service'
+  }
+];
 
 export default function HeroSection() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % imagePlaceholders.hero.length);
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
     }, 4000); // Change image every 4 seconds
 
     return () => clearInterval(interval);
@@ -30,8 +45,8 @@ export default function HeroSection() {
 
         {/* Image Slider */}
         <div className="relative mb-12 max-w-4xl mx-auto">
-          <div className={`relative ${imagePlaceholders.hero[0].aspectRatio} rounded-xl overflow-hidden shadow-2xl`}>
-            {imagePlaceholders.hero.map((image, index) => (
+          <div className="relative aspect-[2/1] rounded-xl overflow-hidden shadow-2xl">
+            {heroImages.map((image, index) => (
               <div
                 key={index}
                 className={`absolute inset-0 transition-opacity duration-1000 ${
@@ -42,7 +57,6 @@ export default function HeroSection() {
                   src={image.src}
                   alt={image.alt}
                   className="w-full h-full object-cover"
-                  loading={index === 0 ? 'eager' : 'lazy'}
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-20"></div>
               </div>
@@ -51,7 +65,7 @@ export default function HeroSection() {
 
           {/* Slider Indicators */}
           <div className="flex justify-center mt-4 space-x-2">
-            {imagePlaceholders.hero.map((_, index) => (
+            {heroImages.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentImageIndex(index)}
