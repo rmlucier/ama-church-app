@@ -85,6 +85,80 @@ export default function Home() {
         </div>
       </section>
 
+      {/* National Day of Prayer Highlight Section */}
+      <section className="bg-white py-16 lg:py-20">
+        <div className="max-w-6xl mx-auto px-6">
+          {/* Section Header */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl text-heading mb-4">
+              National Day of Prayer 2024
+            </h2>
+            <p className="text-lg lg:text-xl text-primary max-w-3xl mx-auto">
+              AMA churches came together in unity to pray for our nation, community, and families. Thank you to everyone who participated in this powerful day of prayer and worship.
+            </p>
+          </div>
+
+          {/* Photo Gallery Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md">
+              <img 
+                src="/images/events/AMA - 4 of 11.jpeg" 
+                alt="National Day of Prayer community gathering"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md">
+              <img 
+                src="/images/events/AMA - 5 of 11.jpeg" 
+                alt="Prayer and worship service"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md">
+              <img 
+                src="/images/events/AMA - 6 of 11.jpeg" 
+                alt="Community members in prayer"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md">
+              <img 
+                src="/images/events/AMA - 7 of 11.jpeg" 
+                alt="AMA leadership and participants"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md">
+              <img 
+                src="/images/events/AMA - 8 of 11.jpeg" 
+                alt="United in prayer for our community"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md">
+              <img 
+                src="/images/events/AMA - 9 of 11.jpeg" 
+                alt="National Day of Prayer celebration"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+          </div>
+
+          {/* Call to Action */}
+          <div className="text-center">
+            <p className="text-primary mb-6">
+              Join us for future events and community gatherings as we continue to serve Albion together.
+            </p>
+            <a
+              href="/events"
+              className="btn-primary px-8 py-3"
+            >
+              View Upcoming Events
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Churches United in Purpose Section */}
       <section className="bg-surface py-16 lg:py-20">
         <div className="max-w-6xl mx-auto px-6">

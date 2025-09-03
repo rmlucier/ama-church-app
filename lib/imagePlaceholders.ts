@@ -5,18 +5,18 @@ export const imagePlaceholders = {
   // Hero section images (rotating carousel)
   hero: [
     {
-      src: 'https://images.unsplash.com/photo-1549388604-817d15aa0110?w=1200&h=600&fit=crop',
-      alt: 'Beautiful church architecture with stained glass windows',
+      src: '/images/hero/AMA - 3 of 11.jpeg',
+      alt: 'Albion Ministerial Association National Day of Prayer event',
       aspectRatio: 'aspect-[2/1]'
     },
     {
-      src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=600&fit=crop',
-      alt: 'Community worship and fellowship gathering',
+      src: '/images/hero/AMA - 10 of 11.jpeg',
+      alt: 'AMA community gathering and fellowship',
       aspectRatio: 'aspect-[2/1]'
     },
     {
-      src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=600&fit=crop',
-      alt: 'Volunteers serving the community together',
+      src: '/images/hero/AMA - 11 of 11.jpeg',
+      alt: 'AMA leadership and community service',
       aspectRatio: 'aspect-[2/1]'
     }
   ],
