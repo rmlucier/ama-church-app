@@ -5,6 +5,8 @@ import Link from 'next/link';
 import HeroSection from './components/HeroSection';
 import ChurchImage from '@/components/ChurchImage';
 import { fetchCsv } from '@/lib/fetchCsv';
+import { Button } from '@/components/ui/button';
+import { Drawer, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger, DrawerClose } from '@/components/ui/drawer';
 
 const SHEET_URL =
   'https://docs.google.com/spreadsheets/d/e/2PACX-1vSFvwE_5w0OCJ1qh5U6KXfVcxGVspcT4jADr4waYdEfGmAZwdxPEVQ4Yw6TOTreHWmuH-V8yjs-wZ23/pub?gid=0&single=true&output=csv';
@@ -102,38 +104,162 @@ export default function Home() {
               <p className="text-primary">Loading member churches...</p>
             </div>
           ) : churches.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {churches.map((church, index) => {
                 return (
-                  <div 
-                    key={index}
-                    className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border-2 border-accent"
-                  >
-                    {/* AMA Member Badge */}
-                    <div className="bg-accent text-white text-xs font-semibold px-3 py-1 text-center">
-                      AMA MEMBER
-                    </div>
-                    {/* Church Image */}
-                    <ChurchImage
-                      churchName={church.Name}
-                      churchAddress={church.Address}
-                      denomination={church.Denomination}
-                      altPhoto={church['Alt Photo']}
-                    />
+                  <Drawer key={index}>
+                    <DrawerTrigger asChild>
+                      <div className="bg-white border-2 border-accent rounded-lg p-4 cursor-pointer hover:shadow-xl hover:-translate-y-1 hover:border-secondary transition-all duration-300 ease-out">
+                        {/* AMA Member Badge */}
+                        <div className="bg-accent text-white text-xs font-semibold px-2 py-1 rounded text-center mb-3">
+                          AMA MEMBER
+                        </div>
+                        
+                        {/* Minimal Church Image */}
+                        <div className="aspect-video mb-3 rounded overflow-hidden">
+                          <ChurchImage
+                            churchName={church.Name}
+                            churchAddress={church.Address}
+                            denomination={church.Denomination}
+                            altPhoto={church['Alt Photo']}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        
+                        {/* Basic Info */}
+                        <h3 className="font-semibold text-primary text-sm mb-1">{church.Name}</h3>
+                        <p className="text-accent text-xs font-medium mb-2">{church.Denomination}</p>
+                        <p className="text-primary text-xs truncate">{church.Address}</p>
+                      </div>
+                    </DrawerTrigger>
                     
-                    {/* Church Info */}
-                    <div className="p-6">
-                      <h3 className="text-xl font-semibold text-primary mb-2">
-                        {church.Name}
-                      </h3>
-                      <p className="text-accent font-medium mb-3">
-                        {church.Denomination}
-                      </p>
-                      <p className="text-primary text-sm">
-                        {church.Address}
-                      </p>
-                    </div>
-                  </div>
+                    <DrawerContent>
+                      <DrawerHeader>
+                        <DrawerTitle className="text-xl text-primary">{church.Name}</DrawerTitle>
+                        <DrawerDescription className="text-accent font-medium text-base">{church.Denomination}</DrawerDescription>
+                      </DrawerHeader>
+                      
+                      <div className="px-4 pb-4">
+                        {/* Church Information List - Responsive Columns */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                          {/* Column 1 - Basic Info */}
+                          <div className="space-y-4">
+                            {/* Address */}
+                            <div className="border-b border-gray-100 pb-3">
+                              <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-1">Address</h4>
+                              <p className="text-primary">{church.Address}</p>
+                            </div>
+                            
+                            {/* Service Times */}
+                            {church['Service Times'] && (
+                              <div className="border-b border-gray-100 pb-3">
+                                <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-1">Service Times</h4>
+                                <p className="text-primary">{church['Service Times']}</p>
+                              </div>
+                            )}
+                            
+                            {/* Pastor */}
+                            {church.Pastor && (
+                              <div className="border-b border-gray-100 pb-3">
+                                <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-1">Pastor</h4>
+                                <p className="text-primary">{church.Pastor}</p>
+                              </div>
+                            )}
+                          </div>
+                          
+                          {/* Column 2 - Contact & Additional Info */}
+                          <div className="space-y-4">
+                            {/* Contact Information */}
+                            {(church.Phone || church.Email) && (
+                              <div className="border-b border-gray-100 pb-3">
+                                <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-1">Contact</h4>
+                                <div className="space-y-1">
+                                  {church.Phone && <p className="text-primary">{church.Phone}</p>}
+                                  {church.Email && <p className="text-primary">{church.Email}</p>}
+                                </div>
+                              </div>
+                            )}
+                            
+                            {/* Website */}
+                            {church.Website && (
+                              <div className="border-b border-gray-100 pb-3">
+                                <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-1">Website</h4>
+                                <a href={church.Website} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline break-all">
+                                  {church.Website}
+                                </a>
+                              </div>
+                            )}
+                          </div>
+                          
+                          {/* Description - Full Width on Desktop */}
+                          {church.Description && (
+                            <div className="md:col-span-2 pt-2">
+                              <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-1">About</h4>
+                              <p className="text-primary leading-relaxed">{church.Description}</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      
+                      <DrawerFooter className="flex-col space-y-2">
+                        {church.Email && (
+                          <Button
+                            onClick={() => {
+                              const email = church.Email;
+                              const subject = `Inquiry about ${church.Name}`;
+                              
+                              // Copy email to clipboard for security
+                              if (navigator.clipboard) {
+                                navigator.clipboard.writeText(email).then(() => {
+                                  alert(`Pastor's email (${email}) copied to clipboard!`);
+                                });
+                              } else {
+                                // Fallback: Show email in alert for manual copy
+                                alert(`Pastor's email: ${email}\n\nPlease copy this email address to contact the pastor.`);
+                              }
+                            }}
+                            className="w-full"
+                            variant="outline"
+                          >
+                            Get Pastor's Email
+                          </Button>
+                        )}
+                        {church.Address && (
+                          <Button
+                            asChild
+                            className="w-full"
+                            variant="outline"
+                          >
+                            <a
+                              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(church.Address)}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Get Directions
+                            </a>
+                          </Button>
+                        )}
+                        {church.Website && (
+                          <Button
+                            asChild
+                            className="w-full"
+                            variant="outline"
+                          >
+                            <a
+                              href={church.Website}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Visit Website
+                            </a>
+                          </Button>
+                        )}
+                        <DrawerClose asChild>
+                          <Button variant="outline">Close</Button>
+                        </DrawerClose>
+                      </DrawerFooter>
+                    </DrawerContent>
+                  </Drawer>
                 );
               })}
             </div>

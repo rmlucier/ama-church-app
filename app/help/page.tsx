@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { fetchCsv } from '@/lib/fetchCsv';
+import { Button } from '@/components/ui/button';
+import { Drawer, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger, DrawerClose } from '@/components/ui/drawer';
 
 const SHEET_URL =
   'https://docs.google.com/spreadsheets/d/1XlMPoLVhTYkYqNObg6uSVhHZBUknpbOoQk4Kqmh2pRQ/gviz/tq?tqx=out:csv&sheet=Resource%20Directory';
@@ -52,42 +54,147 @@ export default function HelpPage() {
         )}
 
         {/* Resource Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {resources.map((resource, idx) => (
-            <div key={idx} className="bg-white rounded-xl shadow-md p-4 space-y-2 print:break-inside-avoid">
-              <h2 className="text-xl font-semibold text-primary">{resource.Name}</h2>
-              <p className="text-secondary font-medium">{resource.Type}</p>
-              <p className="text-primary">{resource.Description}</p>
-              {resource['Contact Name'] && (
-                <p className="text-primary">Contact: {resource['Contact Name']}</p>
-              )}
-              {resource.Phone && <p className="text-[#7A6A53]">Phone: {resource.Phone}</p>}
-              {resource.Email && (
-                <p className="text-primary">
-                  Email:{' '}
-                  <a
-                    href={`mailto:${resource.Email}`}
-                    className="underline text-accent hover:text-primary"
-                  >
-                    {resource.Email}
-                  </a>
-                </p>
-              )}
-              {resource.Hours && <p className="text-[#7A6A53]">Hours: {resource.Hours}</p>}
-              {resource.Address && (
-                <>
-                  <p className="text-primary">Address: {resource.Address}</p>
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(resource.Address)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-accent underline text-sm hover:text-primary"
-                  >
-                    Get Directions
-                  </a>
-                </>
-              )}
-            </div>
+            <Drawer key={idx}>
+              <DrawerTrigger asChild>
+                <div className="bg-white border rounded-lg p-4 cursor-pointer hover:shadow-xl hover:-translate-y-1 hover:border-accent transition-all duration-300 ease-out">
+                  {/* Resource Type Badge */}
+                  <div className="bg-secondary text-white text-xs font-semibold px-2 py-1 rounded text-center mb-3">
+                    {resource.Type}
+                  </div>
+                  
+                  {/* Basic Info */}
+                  <h3 className="font-semibold text-primary text-sm mb-1">{resource.Name}</h3>
+                  <p className="text-primary text-xs line-clamp-2 mb-2">{resource.Description}</p>
+                  {resource['Contact Name'] && (
+                    <p className="text-accent text-xs">Contact: {resource['Contact Name']}</p>
+                  )}
+                </div>
+              </DrawerTrigger>
+              
+              <DrawerContent>
+                <DrawerHeader>
+                  <DrawerTitle className="text-xl text-primary">{resource.Name}</DrawerTitle>
+                  <DrawerDescription className="text-secondary font-medium text-base">{resource.Type}</DrawerDescription>
+                </DrawerHeader>
+                
+                <div className="px-4 pb-4">
+                  {/* Resource Information List - Responsive Columns */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                    {/* Column 1 - Basic Info */}
+                    <div className="space-y-4">
+                      {/* Description */}
+                      <div className="border-b border-gray-100 pb-3">
+                        <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-1">Description</h4>
+                        <p className="text-primary">{resource.Description}</p>
+                      </div>
+                      
+                      {/* Contact Person */}
+                      {resource['Contact Name'] && (
+                        <div className="border-b border-gray-100 pb-3">
+                          <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-1">Contact Person</h4>
+                          <p className="text-primary">{resource['Contact Name']}</p>
+                        </div>
+                      )}
+                      
+                      {/* Hours */}
+                      {resource.Hours && (
+                        <div className="border-b border-gray-100 pb-3">
+                          <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-1">Hours</h4>
+                          <p className="text-primary">{resource.Hours}</p>
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Column 2 - Contact & Location Info */}
+                    <div className="space-y-4">
+                      {/* Contact Information */}
+                      {(resource.Phone || resource.Email) && (
+                        <div className="border-b border-gray-100 pb-3">
+                          <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-1">Contact Info</h4>
+                          <div className="space-y-1">
+                            {resource.Phone && <p className="text-primary">{resource.Phone}</p>}
+                            {resource.Email && <p className="text-primary">{resource.Email}</p>}
+                          </div>
+                        </div>
+                      )}
+                      
+                      {/* Address */}
+                      {resource.Address && (
+                        <div className="border-b border-gray-100 pb-3">
+                          <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-1">Address</h4>
+                          <p className="text-primary">{resource.Address}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                
+                <DrawerFooter className="flex-col space-y-2">
+                  {resource.Email && (
+                    <Button
+                      onClick={() => {
+                        const email = resource.Email;
+                        
+                        // Copy email to clipboard for security
+                        if (navigator.clipboard) {
+                          navigator.clipboard.writeText(email).then(() => {
+                            alert(`Contact email (${email}) copied to clipboard!`);
+                          });
+                        } else {
+                          // Fallback: Show email in alert for manual copy
+                          alert(`Contact email: ${email}\n\nPlease copy this email address to contact them.`);
+                        }
+                      }}
+                      className="w-full"
+                      variant="outline"
+                    >
+                      Get Contact Email
+                    </Button>
+                  )}
+                  {resource.Phone && (
+                    <Button
+                      onClick={() => {
+                        const phone = resource.Phone;
+                        
+                        // Copy phone to clipboard
+                        if (navigator.clipboard) {
+                          navigator.clipboard.writeText(phone).then(() => {
+                            alert(`Phone number (${phone}) copied to clipboard!`);
+                          });
+                        } else {
+                          // Fallback: Show phone in alert for manual copy
+                          alert(`Phone number: ${phone}\n\nPlease copy this number to contact them.`);
+                        }
+                      }}
+                      className="w-full"
+                      variant="outline"
+                    >
+                      Get Phone Number
+                    </Button>
+                  )}
+                  {resource.Address && (
+                    <Button
+                      asChild
+                      className="w-full"
+                      variant="outline"
+                    >
+                      <a
+                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(resource.Address)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Get Directions
+                      </a>
+                    </Button>
+                  )}
+                  <DrawerClose asChild>
+                    <Button variant="outline">Close</Button>
+                  </DrawerClose>
+                </DrawerFooter>
+              </DrawerContent>
+            </Drawer>
           ))}
         </div>
       </div>
