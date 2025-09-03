@@ -136,6 +136,7 @@ export default function HelpPage() {
                     <Button
                       onClick={() => {
                         const email = resource.Email;
+                        if (!email) return;
                         
                         // Copy email to clipboard for security
                         if (navigator.clipboard) {
@@ -157,6 +158,7 @@ export default function HelpPage() {
                     <Button
                       onClick={() => {
                         const phone = resource.Phone;
+                        if (!phone) return;
                         
                         // Copy phone to clipboard
                         if (navigator.clipboard) {

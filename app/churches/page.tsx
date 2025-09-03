@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { fetchCsv } from '@/lib/fetchCsv';
 import ChurchImage from '@/components/ChurchImage';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Drawer, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger, DrawerClose } from '@/components/ui/drawer';
 
 const SHEET_URL =
@@ -220,7 +219,7 @@ export default function ChurchesPage() {
                                 <Button
                                   onClick={() => {
                                     const email = church.Email;
-                                    const subject = `Inquiry about ${church.Name}`;
+                                    if (!email) return;
                                     
                                     // Copy email to clipboard for security
                                     if (navigator.clipboard) {
@@ -235,7 +234,7 @@ export default function ChurchesPage() {
                                   className="w-full"
                                   variant="outline"
                                 >
-                                  Get Pastor's Email
+                                  Get Pastor&apos;s Email
                                 </Button>
                               )}
                               {church.Address && (
@@ -387,7 +386,7 @@ export default function ChurchesPage() {
                                 <Button
                                   onClick={() => {
                                     const email = church.Email;
-                                    const subject = `Inquiry about ${church.Name}`;
+                                    if (!email) return;
                                     
                                     // Copy email to clipboard for security
                                     if (navigator.clipboard) {
@@ -402,7 +401,7 @@ export default function ChurchesPage() {
                                   className="w-full"
                                   variant="outline"
                                 >
-                                  Get Pastor's Email
+                                  Get Pastor&apos;s Email
                                 </Button>
                               )}
                               {church.Address && (

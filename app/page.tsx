@@ -206,7 +206,7 @@ export default function Home() {
                           <Button
                             onClick={() => {
                               const email = church.Email;
-                              const subject = `Inquiry about ${church.Name}`;
+                              if (!email) return;
                               
                               // Copy email to clipboard for security
                               if (navigator.clipboard) {
@@ -221,7 +221,7 @@ export default function Home() {
                             className="w-full"
                             variant="outline"
                           >
-                            Get Pastor's Email
+                            Get Pastor&apos;s Email
                           </Button>
                         )}
                         {church.Address && (
