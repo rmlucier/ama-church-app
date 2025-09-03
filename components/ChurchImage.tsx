@@ -25,31 +25,39 @@ export default function ChurchImage({ churchName, churchAddress, denomination, a
       setLoadingPhoto(true);
       
       try {
-        // First, try to get actual place photos
-        const placePhoto = await getChurchPhotoClient(churchName, churchAddress);
+        let imageUrl = null;
         
-        if (placePhoto) {
-          setImageSrc(placePhoto);
-        } else if (altPhoto && altPhoto.trim() !== '') {
-          // Check for alt photo from Google Sheet
-          setImageSrc(altPhoto);
+        // First, check for alt photo from Google Sheet (fastest option)
+        if (altPhoto && altPhoto.trim() !== '') {
+          imageUrl = altPhoto;
         } else {
-          // Fallback to Street View
-          const streetViewUrl = getStreetViewImage(churchAddress);
-          if (streetViewUrl) {
-            setImageSrc(streetViewUrl);
-          } else {
-            setImageSrc(placeholderImage.src);
+          // Try to get actual place photos (slower, may fail)
+          try {
+            const placePhoto = await getChurchPhotoClient(churchName, churchAddress);
+            if (placePhoto) {
+              imageUrl = placePhoto;
+            }
+          } catch (apiError) {
+            console.warn(`Places API failed for ${churchName}:`, apiError);
+          }
+          
+          // If no place photo, fallback to Street View
+          if (!imageUrl && churchAddress) {
+            const streetViewUrl = getStreetViewImage(churchAddress);
+            if (streetViewUrl) {
+              imageUrl = streetViewUrl;
+            }
           }
         }
+        
+        // Set the image or fallback to placeholder
+        setImageSrc(imageUrl || placeholderImage.src);
+        
       } catch (error) {
         console.error('Error loading church photo:', error);
-        // Check for alt photo before falling back to placeholder
-        if (altPhoto && altPhoto.trim() !== '') {
-          setImageSrc(altPhoto);
-        } else {
-          setImageSrc(placeholderImage.src);
-        }
+        // Final fallback to alt photo or placeholder
+        const fallbackUrl = (altPhoto && altPhoto.trim() !== '') ? altPhoto : placeholderImage.src;
+        setImageSrc(fallbackUrl);
       } finally {
         setLoadingPhoto(false);
       }
