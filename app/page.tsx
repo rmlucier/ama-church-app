@@ -102,42 +102,42 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
             <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md">
               <img 
-                src="/images/events/AMA - 4 of 11.jpeg" 
+                src="/images/events/ama-4-of-11.jpeg" 
                 alt="National Day of Prayer community gathering"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
             <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md">
               <img 
-                src="/images/events/AMA - 5 of 11.jpeg" 
+                src="/images/events/ama-5-of-11.jpeg" 
                 alt="Prayer and worship service"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
             <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md">
               <img 
-                src="/images/events/AMA - 6 of 11.jpeg" 
+                src="/images/events/ama-6-of-11.jpeg" 
                 alt="Community members in prayer"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
             <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md">
               <img 
-                src="/images/events/AMA - 7 of 11.jpeg" 
+                src="/images/events/ama-7-of-11.jpeg" 
                 alt="AMA leadership and participants"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
             <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md">
               <img 
-                src="/images/events/AMA - 8 of 11.jpeg" 
+                src="/images/events/ama-8-of-11.jpeg" 
                 alt="United in prayer for our community"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
             <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md">
               <img 
-                src="/images/events/AMA - 9 of 11.jpeg" 
+                src="/images/events/ama-9-of-11.jpeg" 
                 alt="National Day of Prayer celebration"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />

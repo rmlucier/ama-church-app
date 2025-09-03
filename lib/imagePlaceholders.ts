@@ -5,17 +5,17 @@ export const imagePlaceholders = {
   // Hero section images (rotating carousel)
   hero: [
     {
-      src: '/images/hero/AMA - 3 of 11.jpeg',
+      src: '/images/hero/ama-3-of-11.jpeg',
       alt: 'Albion Ministerial Association National Day of Prayer event',
       aspectRatio: 'aspect-[2/1]'
     },
     {
-      src: '/images/hero/AMA - 10 of 11.jpeg',
+      src: '/images/hero/ama-10-of-11.jpeg',
       alt: 'AMA community gathering and fellowship',
       aspectRatio: 'aspect-[2/1]'
     },
     {
-      src: '/images/hero/AMA - 11 of 11.jpeg',
+      src: '/images/hero/ama-11-of-11.jpeg',
       alt: 'AMA leadership and community service',
       aspectRatio: 'aspect-[2/1]'
     }
