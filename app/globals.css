@@ -66,3 +66,8 @@ p, span {
 a, button, [data-slot], [role="button"], .cursor-pointer {
   pointer-events: auto;
 }
+
+/* Custom button styles */
+.btn-primary {
+  @apply inline-flex items-center justify-center px-6 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent/90 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-transform duration-200;
+}
