@@ -21,35 +21,35 @@ export const imagePlaceholders = {
     }
   ],
 
-  // Church cards and listings
+  // Church cards and listings - using SVG placeholders for reliability
   churches: {
     default: {
-      src: 'https://images.unsplash.com/photo-1520637836862-4d197d17c968?w=400&h=300&fit=crop',
+      src: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect width="400" height="300" fill="%23dde5b6"/%3E%3Cg transform="translate(200 150)"%3E%3Cpath d="M-40 -60 L0 -100 L40 -60 L40 40 L-40 40 Z" fill="%236c584c"/%3E%3Crect x="-30" y="-30" width="60" height="50" fill="%23adc178"/%3E%3Cpath d="M-10 -15 L0 -25 L10 -15 Z" fill="%236c584c"/%3E%3C/g%3E%3Ctext x="200" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="%236c584c"%3ELocal Church%3C/text%3E%3C/svg%3E',
       alt: 'Local church building',
       aspectRatio: 'aspect-[4/3]'
     },
     baptist: {
-      src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop',
+      src: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect width="400" height="300" fill="%23dde5b6"/%3E%3Cg transform="translate(200 150)"%3E%3Cpath d="M-50 -60 L0 -110 L50 -60 L50 40 L-50 40 Z" fill="%236c584c"/%3E%3Crect x="-40" y="-40" width="80" height="60" fill="%23adc178"/%3E%3Ccircle cx="0" cy="-15" r="8" fill="%236c584c"/%3E%3C/g%3E%3Ctext x="200" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="%236c584c"%3EBaptist Church%3C/text%3E%3C/svg%3E',
       alt: 'Baptist church building',
       aspectRatio: 'aspect-[4/3]'
     },
     methodist: {
-      src: 'https://images.unsplash.com/photo-1518411581080-b16818d7b8cc?w=400&h=300&fit=crop',
+      src: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect width="400" height="300" fill="%23dde5b6"/%3E%3Cg transform="translate(200 150)"%3E%3Cpath d="M-45 -65 L0 -105 L45 -65 L45 40 L-45 40 Z" fill="%236c584c"/%3E%3Crect x="-35" y="-35" width="70" height="55" fill="%23adc178"/%3E%3Cpath d="M-15 -20 L0 -30 L15 -20 L15 0 L-15 0 Z" fill="%23f0ead2"/%3E%3C/g%3E%3Ctext x="200" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="%236c584c"%3EMethodist Church%3C/text%3E%3C/svg%3E',
       alt: 'Methodist church building',
       aspectRatio: 'aspect-[4/3]'
     },
     catholic: {
-      src: 'https://images.unsplash.com/photo-1549388604-817d15aa0110?w=400&h=300&fit=crop',
+      src: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect width="400" height="300" fill="%23dde5b6"/%3E%3Cg transform="translate(200 150)"%3E%3Cpath d="M-55 -70 L0 -115 L55 -70 L55 40 L-55 40 Z" fill="%236c584c"/%3E%3Crect x="-45" y="-45" width="90" height="65" fill="%23adc178"/%3E%3Cpath d="M0 -85 L0 -65 M-10 -75 L10 -75" stroke="%23f0ead2" stroke-width="3"/%3E%3C/g%3E%3Ctext x="200" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="%236c584c"%3ECatholic Church%3C/text%3E%3C/svg%3E',
       alt: 'Catholic church building',
       aspectRatio: 'aspect-[4/3]'
     },
     presbyterian: {
-      src: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=400&h=300&fit=crop',
+      src: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect width="400" height="300" fill="%23dde5b6"/%3E%3Cg transform="translate(200 150)"%3E%3Cpath d="M-45 -60 L0 -100 L45 -60 L45 40 L-45 40 Z" fill="%236c584c"/%3E%3Crect x="-35" y="-30" width="70" height="50" fill="%23adc178"/%3E%3Cpolygon points="-10,-20 0,-30 10,-20 10,0 -10,0" fill="%23f0ead2"/%3E%3C/g%3E%3Ctext x="200" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="%236c584c"%3EPresbyterian Church%3C/text%3E%3C/svg%3E',
       alt: 'Presbyterian church building',
       aspectRatio: 'aspect-[4/3]'
     },
     lutheran: {
-      src: 'https://images.unsplash.com/photo-1520637836862-4d197d17c968?w=400&h=300&fit=crop',
+      src: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect width="400" height="300" fill="%23dde5b6"/%3E%3Cg transform="translate(200 150)"%3E%3Cpath d="M-40 -55 L0 -95 L40 -55 L40 40 L-40 40 Z" fill="%236c584c"/%3E%3Crect x="-30" y="-25" width="60" height="45" fill="%23adc178"/%3E%3Cpath d="M0 -75 L0 -55 M-8 -65 L8 -65" stroke="%23f0ead2" stroke-width="2"/%3E%3C/g%3E%3Ctext x="200" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="%236c584c"%3ELutheran Church%3C/text%3E%3C/svg%3E',
       alt: 'Lutheran church building',
       aspectRatio: 'aspect-[4/3]'
     }
