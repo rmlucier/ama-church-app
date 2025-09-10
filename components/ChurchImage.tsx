@@ -19,14 +19,17 @@ export default function ChurchImage({ churchName, denomination, altPhoto, classN
   // Get denomination-specific placeholder image
   const placeholderImage = getChurchImage(denomination);
   
+  // Generate filename from church name
+  const primaryFilename = churchName.toLowerCase().replace(/[^a-z0-9]/g, '-');
+  
   // Priority order for image sources
   const imageSources = [
     // 1. Alt photo from Google Sheet (if provided and valid)
     altPhoto && altPhoto.trim() !== '' && altPhoto.startsWith('http') ? altPhoto : null,
     // 2. Downloaded images (consistent Google Street View/Places images)
-    `/images/churches/${churchName.toLowerCase().replace(/[^a-z0-9]/g, '-')}.jpg`,
-    `/images/churches/${churchName.toLowerCase().replace(/[^a-z0-9]/g, '-')}.jpeg`,
-    `/images/churches/${churchName.toLowerCase().replace(/[^a-z0-9]/g, '-')}.png`,
+    `/images/churches/${primaryFilename}.jpg`,
+    `/images/churches/${primaryFilename}.jpeg`,
+    `/images/churches/${primaryFilename}.png`,
     // 3. Alternative naming patterns for custom images
     `/images/churches/${churchName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}.jpg`,
     // 4. Denomination-specific SVG placeholder (last resort)
@@ -34,11 +37,9 @@ export default function ChurchImage({ churchName, denomination, altPhoto, classN
   ].filter(Boolean) as string[];
   
   const handleImageError = () => {
-    console.log(`Image failed to load: ${imageSources[currentImageIndex]} for ${churchName}`);
     if (currentImageIndex < imageSources.length - 1) {
       setCurrentImageIndex(prev => prev + 1);
     } else {
-      console.log(`All image sources failed for ${churchName}, showing fallback`);
       setImageError(true);
     }
   };

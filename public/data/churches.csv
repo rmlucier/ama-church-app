@@ -1,6 +1,6 @@
-name,denomination,address,serviceTimes,pastor,website
-New Hope Church,Assemblies of God,123 Faith Street Albion MI,Sundays at 10am,Pastor Roy Lucier,https://newhopealbion.org
-Grace Baptist Church,Baptist,456 Grace Rd Albion MI,Sundays at 11am,Rev. Jane Smith,
-Unity Fellowship,Non-denominational,789 Unity Ave Albion MI,Sundays at 9:30am,Pastor Marcus Lee,https://unityfellowshipalbion.org
-St. Mary's Catholic Church,Catholic,321 Church St Albion MI,Sundays at 9am and 11am,Father Michael O'Connor,https://stmarysalbion.org
-First Methodist Church,Methodist,654 Methodist Dr Albion MI,Sundays at 10:30am,Rev. Sarah Johnson,https://firstmethodistalbion.org 
+Name,Denomination,Address,Service Times,Pastor,Website,Email,Phone,Description,AMA Member?,Alt Photo
+New Hope Church,Assemblies of God,123 Faith Street Albion MI,Sundays at 10am,Pastor Roy Lucier,https://newhopealbion.org,,,A welcoming church community,YES,
+Grace Baptist Church,Baptist,456 Grace Rd Albion MI,Sundays at 11am,Rev. Jane Smith,,,,Traditional Baptist worship,YES,
+Unity Fellowship,Non-denominational,789 Unity Ave Albion MI,Sundays at 9:30am,Pastor Marcus Lee,https://unityfellowshipalbion.org,,,Contemporary worship experience,YES,
+St. Mary's Catholic Church,Catholic,321 Church St Albion MI,Sundays at 9am and 11am,Father Michael O'Connor,https://stmarysalbion.org,,,Historic Catholic parish,YES,
+First Methodist Church,Methodist,654 Methodist Dr Albion MI,Sundays at 10:30am,Rev. Sarah Johnson,https://firstmethodistalbion.org,,,Methodist tradition and values,YES, 
