@@ -8,6 +8,7 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/churches', label: 'Churches' },
+  { href: '/night-of-treasures', label: 'Night of Treasures' },
   { href: '/help', label: 'Help' },
   { href: '/events', label: 'Events' },
   { href: '/volunteer', label: 'Get Involved' },
