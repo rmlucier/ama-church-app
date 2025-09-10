@@ -4,14 +4,19 @@ This folder contains scripts for managing church images in the AMA website.
 
 ## Scripts Overview
 
-### `simple-download.js` - Current Production Script
-**Purpose**: Downloads consistent Street View images for all churches
-**Usage**: `node scripts/simple-download.js`
+### `download-business-photos.js` - Current Production Script ⭐
+**Purpose**: Downloads Google Business photos (prioritized) with Street View fallback
+**Usage**: `node scripts/download-business-photos.js`
 **What it does**:
-- Downloads Google Street View images for all 5 churches
-- Saves them with standardized filenames (e.g., `new-hope-church.jpg`)
-- Skips churches that already have images
-- Creates consistent, professional-looking church photos
+- **Priority 1**: Searches Google Places API for official business photos
+- **Fallback**: Uses Google Street View if no business photos available
+- Downloads images for all churches from live Google Sheets data
+- Handles redirects properly for Google Photos URLs
+- Provides detailed reporting on photo sources
+
+### `simple-download.js` - Legacy Script
+**Purpose**: Downloads Street View images only
+**Status**: Superseded by `download-business-photos.js`
 
 ### `download-church-images.js` - Advanced Script (Backup)
 **Purpose**: More complex script that tries Google Places photos first
@@ -24,8 +29,10 @@ This folder contains scripts for managing church images in the AMA website.
 ## Image Management Workflow
 
 ### Initial Setup (One-time)
-1. Run the download script: `node scripts/simple-download.js`
-2. This creates consistent images for all churches
+1. Run the download script: `node scripts/download-business-photos.js`
+2. This downloads the best available photos for all churches:
+   - Google Business photos (when available)
+   - Google Street View (fallback)
 3. Images are saved to `/public/images/churches/`
 
 ### Custom Image Updates
@@ -51,11 +58,12 @@ Churches use these exact filenames:
 3. **SVG Placeholders** - Denomination-specific fallbacks
 
 ### Benefits of This System
-- **Consistency**: All churches have professional-looking images
+- **Best Quality**: Prioritizes official business photos over street views
+- **Automatic Fallback**: Uses Street View when business photos unavailable
 - **Performance**: Images are served locally (fast loading)
+- **Consistency**: All churches have professional-looking images
 - **Flexibility**: Easy to replace with custom photos
 - **Reliability**: No API calls during page load
-- **Backup**: Original downloads preserved in `/downloaded/` folder
 
 ## Environment Requirements
 
