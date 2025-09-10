@@ -197,15 +197,15 @@ async function downloadBusinessPhotos() {
     try {
       const filepath = path.join(churchesDir, church.filename);
       
-      // Skip if already exists and is not empty, unless it's very small (likely a failed download)
+      // Skip if already exists and is large (likely business photo), re-download smaller ones (likely Street View)
       if (fs.existsSync(filepath)) {
         const stats = fs.statSync(filepath);
-        if (stats.size > 10000) { // Skip if > 10KB (successful download)
-          console.log(`⏭️  Skipping ${church.filename} (already exists, ${Math.round(stats.size/1024)}KB)`);
+        if (stats.size > 80000) { // Skip if > 80KB (likely good business photo)
+          console.log(`⏭️  Skipping ${church.filename} (already exists, ${Math.round(stats.size/1024)}KB - likely business photo)`);
           skippedCount++;
           continue;
         } else {
-          console.log(`🔄 Re-downloading ${church.filename} (file too small: ${stats.size} bytes)`);
+          console.log(`🔄 Re-downloading ${church.filename} (${Math.round(stats.size/1024)}KB - trying for business photo)`);
         }
       }
 
