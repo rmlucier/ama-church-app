@@ -7,7 +7,16 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Placeholder for future form handling logic
+    const formData = new FormData(e.currentTarget);
+    const name = (formData.get('name') as string) || '';
+    const email = (formData.get('email') as string) || '';
+    const message = (formData.get('message') as string) || '';
+
+    const subject = `Message from ${name} via AMA website`;
+    const body = `From: ${name} <${email}>\n\n${message}`;
+    const mailto = `mailto:Albionministers@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailto;
     setSubmitted(true);
   };
 
@@ -77,41 +86,57 @@ export default function ContactPage() {
             <h2 className="text-2xl font-semibold mb-6 text-primary">Send a Message</h2>
 
             {submitted ? (
-              <div className="bg-surface text-primary p-4 rounded-md text-center">
-                Thank you! Your message has been received.
+              <div className="bg-surface text-primary p-4 rounded-md text-center space-y-2">
+                <p>Your email app should now be open with your message.</p>
+                <p className="text-sm">
+                  If nothing opened, email us directly at{' '}
+                  <a href="mailto:Albionministers@gmail.com" className="text-accent underline">
+                    Albionministers@gmail.com
+                  </a>
+                  .
+                </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-primary">Name</label>
-              <input
-                type="text"
-                required
-                className="mt-1 w-full p-2 border border-secondary rounded-md focus:border-accent focus:outline-none"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-primary">Email</label>
-              <input
-                type="email"
-                required
-                className="mt-1 w-full p-2 border border-secondary rounded-md focus:border-accent focus:outline-none"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-primary">Message</label>
-              <textarea
-                required
-                rows={4}
-                className="mt-1 w-full p-2 border border-secondary rounded-md focus:border-accent focus:outline-none"
-              ></textarea>
-            </div>
+                <div>
+                  <label htmlFor="contact-name" className="block text-sm font-medium text-primary">Name</label>
+                  <input
+                    id="contact-name"
+                    name="name"
+                    type="text"
+                    required
+                    className="mt-1 w-full p-2 border border-secondary rounded-md focus:border-accent focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="contact-email" className="block text-sm font-medium text-primary">Email</label>
+                  <input
+                    id="contact-email"
+                    name="email"
+                    type="email"
+                    required
+                    className="mt-1 w-full p-2 border border-secondary rounded-md focus:border-accent focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="contact-message" className="block text-sm font-medium text-primary">Message</label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    required
+                    rows={4}
+                    className="mt-1 w-full p-2 border border-secondary rounded-md focus:border-accent focus:outline-none"
+                  ></textarea>
+                </div>
                 <button
                   type="submit"
                   className="bg-accent text-white px-4 py-2 rounded-md hover:bg-primary transition"
                 >
                   Send Message
                 </button>
+                <p className="text-xs text-primary/70">
+                  This opens your email app with the message pre-filled so you can send it to Albionministers@gmail.com.
+                </p>
               </form>
             )}
           </div>

@@ -3,9 +3,31 @@
 export default function NightOfTreasuresPage() {
   return (
     <main className="bg-surface min-h-screen">
+      {/* 2026 Teaser Banner */}
+      <section className="bg-primary text-white py-6 px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-block bg-white/15 text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-3">
+            Looking Ahead
+          </div>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">
+            Night of Treasures 2026 — Coming Soon
+          </h2>
+          <p className="text-base md:text-lg opacity-90">
+            Details for this year&apos;s event will be announced. Check back, or{' '}
+            <a href="mailto:Albionministers@gmail.com" className="underline hover:opacity-80">
+              email us
+            </a>{' '}
+            to be notified.
+          </p>
+        </div>
+      </section>
+
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-accent to-secondary text-white py-16 px-8">
         <div className="max-w-6xl mx-auto text-center">
+          <div className="inline-block bg-white/20 text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
+            Past Event — 2025 Archive
+          </div>
           <div className="text-sm font-semibold opacity-90 mb-2">
             ALBION MINISTERIAL ASSOCIATION
           </div>
@@ -33,12 +55,20 @@ export default function NightOfTreasuresPage() {
       {/* Main Content */}
       <section className="py-16 px-8">
         <div className="max-w-4xl mx-auto">
-          
+
+          {/* Archive Note */}
+          <div className="mb-12 bg-white border-l-4 border-secondary rounded p-6">
+            <p className="text-primary">
+              The content below is preserved as a record of the 2025 event. Details for{' '}
+              <strong>Night of Treasures 2026</strong> will be posted here when finalized.
+            </p>
+          </div>
+
           {/* Event Flyer */}
           <div className="mb-16 text-center">
-            <img 
-              src="/images/events/night-of-treasures-2025.png" 
-              alt="Night of Treasures 2025 - Save the Date - Sunday, November 2, 2025 at 4:00 PM"
+            <img
+              src="/images/events/night-of-treasures-2025.png"
+              alt="Night of Treasures 2025 flyer — Sunday, November 2, 2025 at 4:00 PM"
               className="max-w-2xl w-full mx-auto rounded-lg shadow-lg"
             />
           </div>
@@ -135,15 +165,15 @@ export default function NightOfTreasuresPage() {
           {/* Registration/Contact Section */}
           <div className="bg-gradient-to-r from-accent/10 to-secondary/10 rounded-lg p-8 text-center">
             <h2 className="text-3xl font-bold text-primary mb-4">
-              Join Us for Night of Treasures
+              Night of Treasures 2026
             </h2>
             <p className="text-lg text-primary/80 mb-6">
-              Be part of this special evening celebrating our church community.
+              Stay tuned for date, venue, and registration details. We&apos;re looking forward to celebrating another year of servant leaders in our community.
             </p>
-            
+
             <div className="space-y-4">
               <p className="text-primary">
-                For more information about Night of Treasures, please contact:
+                For more information or to be notified when 2026 details are announced, please contact:
               </p>
               <div className="inline-flex items-center space-x-4">
                 <a 

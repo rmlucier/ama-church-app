@@ -8,9 +8,8 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/churches', label: 'Churches' },
-  { href: '/night-of-treasures', label: 'Night of Treasures' },
-  { href: '/help', label: 'Help' },
   { href: '/events', label: 'Events' },
+  { href: '/help', label: 'Help' },
   { href: '/volunteer', label: 'Get Involved' },
   { href: '/donate', label: 'Donate' },
   { href: '/contact', label: 'Contact' },
@@ -20,7 +19,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed left-0 top-0 h-full w-56 bg-white shadow-lg z-40 hidden lg:block flex flex-col">
+    <aside className="fixed left-0 top-0 h-full w-56 bg-white shadow-lg z-40 hidden lg:flex lg:flex-col">
       <div className="p-6 flex-1">
         {/* Logo */}
         <Link href="/" className="block mb-8">
