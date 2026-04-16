@@ -5,6 +5,11 @@ import { Sidebar, MobileNav } from '@/components/Navigation';
 export const metadata: Metadata = {
   title: 'Albion Ministerial Association',
   description: 'Connecting churches and serving Albion, MI.',
+  formatDetection: {
+    telephone: false,
+    address: false,
+    email: false,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

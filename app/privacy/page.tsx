@@ -6,7 +6,7 @@ export default function PrivacyPage() {
         
         <div className="bg-white p-8 rounded-xl shadow-md">
           <p className="text-sm text-primary mb-6">
-            <strong>Effective Date:</strong> {new Date().toLocaleDateString()}
+            <strong>Effective Date:</strong> April 16, 2026
           </p>
 
           <section className="mb-8">

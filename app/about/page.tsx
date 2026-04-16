@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function AboutPage() {
   return (
     <main className="bg-neutral min-h-screen p-8">
@@ -138,11 +140,15 @@ export default function AboutPage() {
             </div>
 
             <div className="bg-surface p-6 rounded-lg">
-              {/* Image Placeholder */}
-              <div className="w-24 h-24 bg-white rounded-full mx-auto mb-4 flex items-center justify-center border-2 border-accent">
-                <svg className="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
+              {/* Portrait */}
+              <div className="relative w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden border-2 border-accent">
+                <Image
+                  src="/images/leadership/elvarane-showers.jpg"
+                  alt="Elvarane Showers"
+                  fill
+                  sizes="96px"
+                  className="object-cover"
+                />
               </div>
               <div className="text-center">
                 <h3 className="text-xl font-semibold text-primary mb-2">Secretary</h3>
