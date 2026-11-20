@@ -33,7 +33,11 @@ export function Sidebar() {
             priority
             className="w-full h-auto transition-transform duration-200 group-hover:scale-[1.03]"
           />
-          <span className="sr-only">Albion Ministerial Association</span>
+          <span className="block mt-3 text-center text-heading text-base leading-tight group-hover:text-secondary transition-colors">
+            Albion Ministerial
+            <br />
+            Association
+          </span>
         </Link>
         
         {/* Navigation */}
