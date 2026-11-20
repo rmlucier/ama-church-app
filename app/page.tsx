@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import HeroSection from './components/HeroSection';
+import ChristmasCarolingBanner from './components/ChristmasCarolingBanner';
 import ChurchImage from '@/components/ChurchImage';
 import { fetchCsv } from '@/lib/fetchCsv';
 import { Button } from '@/components/ui/button';
@@ -47,6 +48,9 @@ export default function Home() {
   }, []);
   return (
     <main className="min-h-screen">
+      {/* Featured Event: Community Christmas Caroling (auto-hides after Dec 12, 2026) */}
+      <ChristmasCarolingBanner />
+
       {/* Hero Section */}
       <HeroSection />
       
