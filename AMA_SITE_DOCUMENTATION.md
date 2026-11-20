@@ -250,7 +250,7 @@ To update organization content:
 2. **Core Values**: Edit `app/about/page.tsx`
 3. **Leadership Photos**: Replace image placeholder divs with actual headshots
 4. **Hero Images**: Update `app/components/HeroSection.tsx` with organization photos
-5. **Church Photos**: Use real church images instead of Google Places placeholders
+5. **Church Photos**: Add real photos for any church still showing a placeholder
 
 ## Next Steps & Recommendations
 

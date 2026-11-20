@@ -12,7 +12,7 @@
 - **UI:** React 19, Tailwind CSS v4, shadcn/ui primitives (Radix Slot, vaul Drawer)
 - **Language:** TypeScript (strict)
 - **Data Sources:** Google Sheets (published CSV), Google Calendar API
-- **Maps:** Google My Maps embed + Google Places API (optional, env-gated)
+- **Maps:** Google My Maps embed
 - **Deployment Target:** Vercel
 
 ## Key Features
@@ -62,8 +62,7 @@ git status
 ```
 ama-church-app/
 ├── app/                    # Next.js App Router pages
-│   ├── api/places/photo/   # POST endpoint for Google Places photos
-│   ├── components/         # Page-scoped components (HeroSection)
+│   ├── components/         # Page-scoped components (HeroSection, ChristmasCarolingBanner)
 │   ├── about/              # Mission, values, leadership
 │   ├── churches/           # Church directory + map
 │   ├── contact/            # Mailto form
@@ -77,7 +76,7 @@ ama-church-app/
 │   ├── layout.tsx          # Root layout (sidebar, mobile nav, donate CTA)
 │   └── page.tsx            # Home
 ├── components/             # Shared components (Navigation, ChurchImage, ui/)
-├── lib/                    # fetchCsv, fetchGoogleCalendarEvents, googlePlaces, utils
+├── lib/                    # fetchCsv, fetchGoogleCalendarEvents, imagePlaceholders, utils
 ├── public/
 │   ├── data/               # churches.csv, resources.csv (fallback data)
 │   └── images/             # hero, events, churches
@@ -85,7 +84,6 @@ ama-church-app/
 ├── ADMIN_TRAINING_GUIDE.md
 ├── AMA_SITE_DOCUMENTATION.md
 ├── CHURCH_GUIDE.md
-├── GOOGLE_PLACES_SETUP.md
 └── README.md
 ```
 
@@ -96,7 +94,7 @@ ama-church-app/
 - **Church photos:** 6-source fallback chain in `components/ChurchImage.tsx` — Alt Photo URL → local file → denomination SVG placeholder → generic fallback.
 
 ## Environment Variables
-- `NEXT_PUBLIC_GOOGLE_PLACES_API_KEY` — optional. Required only to enable the `/api/places/photo` endpoint and Street View fallbacks. Site works without it; photo priority falls through to the next source.
+- None required by the live site. `NEXT_PUBLIC_GOOGLE_PLACES_API_KEY` in `.env.local` is used only by the one-off image-download scripts in `scripts/`.
 
 ## Organization Details
 - **Mission:** Foster unity, shared purpose, and collaboration among churches in Albion, MI.

@@ -67,7 +67,7 @@ export default function NightOfTreasuresPage() {
           {/* Event Flyer */}
           <div className="mb-16 text-center">
             <img
-              src="/images/events/night-of-treasures-2025.png"
+              src="/images/events/night-of-treasures-2025.jpg"
               alt="Night of Treasures 2025 flyer — Sunday, November 2, 2025 at 4:00 PM"
               className="max-w-2xl w-full mx-auto rounded-lg shadow-lg"
             />
