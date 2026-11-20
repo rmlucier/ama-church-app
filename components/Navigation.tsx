@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
@@ -22,10 +23,17 @@ export function Sidebar() {
     <aside className="fixed left-0 top-0 h-full w-56 bg-white shadow-lg z-40 hidden lg:flex lg:flex-col">
       <div className="p-6 flex-1">
         {/* Logo */}
-        <Link href="/" className="block mb-8">
-          <h1 className="text-2xl text-heading hover:text-secondary transition-colors">
-            AMA
-          </h1>
+        <Link href="/" className="block mb-8 group" aria-label="Albion Ministerial Association home">
+          <Image
+            src="/images/brand/ama-logo.png"
+            alt="Albion Ministerial Association logo"
+            width={800}
+            height={551}
+            sizes="176px"
+            priority
+            className="w-full h-auto transition-transform duration-200 group-hover:scale-[1.03]"
+          />
+          <span className="sr-only">Albion Ministerial Association</span>
         </Link>
         
         {/* Navigation */}
@@ -102,7 +110,15 @@ export function MobileNav() {
           </button>
           
           {/* Logo */}
-          <Link href="/" className="text-xl text-heading">
+          <Link href="/" className="flex items-center gap-2 text-xl text-heading" aria-label="Albion Ministerial Association home">
+            <Image
+              src="/images/brand/ama-seal.png"
+              alt=""
+              width={40}
+              height={40}
+              priority
+              className="w-10 h-10"
+            />
             AMA
           </Link>
           

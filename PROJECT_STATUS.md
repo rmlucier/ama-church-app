@@ -105,6 +105,7 @@ ama-church-app/
 ## Known Follow-Ups
 - Google Calendar API key is still hardcoded in `lib/fetchGoogleCalendarEvents.ts`. Rotate in Google Cloud Console and move to `NEXT_PUBLIC_GOOGLE_CALENDAR_API_KEY` when ready.
 - Vice President leadership slot is still TBA.
+- AMA logo: the only copy available was a 720px JPEG on a blue background. It was rebuilt at 4x: background removed, compression noise smoothed, jagged edges on the shield, cross, dove and ring redrawn, and both lines of lettering re-set in Palatino Bold. Files in `public/images/brand/` (`ama-logo-full.png` 2400px for print/flyers, `ama-logo.png` for the sidebar, `ama-seal.png` the round shield badge). Site icons in `app/` (`favicon.ico`, `icon.png`, `apple-icon.png`) are made from the seal. If the designer's original file turns up, replace these.
 - Night of Treasures 2026 details are not yet published — placeholder copy lives on `/night-of-treasures`.
 
 ---
