@@ -39,7 +39,7 @@ export default function HelpPage() {
   }, []);
 
   return (
-    <main className="bg-neutral min-h-screen p-8">
+    <div className="bg-neutral min-h-screen p-8">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-6 text-primary">Get Help in Albion</h1>
         <p className="text-center text-primary mb-8">
@@ -200,6 +200,6 @@ export default function HelpPage() {
           ))}
         </div>
       </div>
-    </main>
+    </div>
   );
 } 

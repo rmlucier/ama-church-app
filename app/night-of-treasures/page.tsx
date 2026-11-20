@@ -1,8 +1,9 @@
 'use client';
 
+import Image from 'next/image';
 export default function NightOfTreasuresPage() {
   return (
-    <main className="bg-surface min-h-screen">
+    <div className="bg-surface min-h-screen">
       {/* 2026 Teaser Banner */}
       <section className="bg-primary text-white py-6 px-8">
         <div className="max-w-4xl mx-auto text-center">
@@ -66,10 +67,13 @@ export default function NightOfTreasuresPage() {
 
           {/* Event Flyer */}
           <div className="mb-16 text-center">
-            <img
+            <Image
               src="/images/events/night-of-treasures-2025.jpg"
               alt="Night of Treasures 2025 flyer — Sunday, November 2, 2025 at 4:00 PM"
-              className="max-w-2xl w-full mx-auto rounded-lg shadow-lg"
+              width={1280}
+              height={1600}
+              sizes="(max-width: 768px) 100vw, 672px"
+              className="max-w-2xl w-full mx-auto rounded-lg shadow-lg h-auto"
             />
           </div>
 
@@ -194,6 +198,6 @@ export default function NightOfTreasuresPage() {
 
         </div>
       </section>
-    </main>
+    </div>
   );
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import HeroSection from './components/HeroSection';
 import ChristmasCarolingBanner from './components/ChristmasCarolingBanner';
@@ -47,7 +48,7 @@ export default function Home() {
     loadData();
   }, []);
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Featured Event: Community Christmas Caroling (auto-hides after Dec 12, 2026) */}
       <ChristmasCarolingBanner />
 
@@ -104,46 +105,58 @@ export default function Home() {
 
           {/* Photo Gallery Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-            <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md">
-              <img 
-                src="/images/events/ama-4-of-11.jpeg" 
+            <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-md">
+              <Image
+                src="/images/events/ama-4-of-11.jpeg"
                 alt="National Day of Prayer community gathering"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
-            <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md">
-              <img 
-                src="/images/events/ama-5-of-11.jpeg" 
+            <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-md">
+              <Image
+                src="/images/events/ama-5-of-11.jpeg"
                 alt="Prayer and worship service"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
-            <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md">
-              <img 
-                src="/images/events/ama-6-of-11.jpeg" 
+            <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-md">
+              <Image
+                src="/images/events/ama-6-of-11.jpeg"
                 alt="Community members in prayer"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
-            <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md">
-              <img 
-                src="/images/events/ama-7-of-11.jpeg" 
+            <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-md">
+              <Image
+                src="/images/events/ama-7-of-11.jpeg"
                 alt="AMA leadership and participants"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
-            <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md">
-              <img 
-                src="/images/events/ama-8-of-11.jpeg" 
+            <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-md">
+              <Image
+                src="/images/events/ama-8-of-11.jpeg"
                 alt="United in prayer for our community"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
-            <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md">
-              <img 
-                src="/images/events/ama-9-of-11.jpeg" 
+            <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-md">
+              <Image
+                src="/images/events/ama-9-of-11.jpeg"
                 alt="National Day of Prayer celebration"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
           </div>
@@ -386,6 +399,6 @@ export default function Home() {
           </a>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

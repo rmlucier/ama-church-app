@@ -1,6 +1,6 @@
 export default function DonatePage() {
   return (
-    <main className="bg-neutral min-h-screen p-8">
+    <div className="bg-neutral min-h-screen p-8">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-8 text-primary text-center">Support Our Mission</h1>
         
@@ -160,6 +160,6 @@ export default function DonatePage() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

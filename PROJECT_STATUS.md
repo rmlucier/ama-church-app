@@ -78,9 +78,7 @@ ama-church-app/
 ├── components/             # Shared components (Navigation, ChurchImage, ui/)
 ├── lib/                    # fetchCsv, fetchGoogleCalendarEvents, imagePlaceholders, utils
 ├── public/
-│   ├── data/               # churches.csv, resources.csv (fallback data)
 │   └── images/             # hero, events, churches
-├── scripts/                # Image-download utilities (dev only)
 ├── ADMIN_TRAINING_GUIDE.md
 ├── AMA_SITE_DOCUMENTATION.md
 ├── CHURCH_GUIDE.md
@@ -94,7 +92,7 @@ ama-church-app/
 - **Church photos:** 6-source fallback chain in `components/ChurchImage.tsx` — Alt Photo URL → local file → denomination SVG placeholder → generic fallback.
 
 ## Environment Variables
-- None required by the live site. `NEXT_PUBLIC_GOOGLE_PLACES_API_KEY` in `.env.local` is used only by the one-off image-download scripts in `scripts/`.
+- None required.
 
 ## Organization Details
 - **Mission:** Foster unity, shared purpose, and collaboration among churches in Albion, MI.
@@ -102,8 +100,14 @@ ama-church-app/
 - **Leadership:** President — Apostle Ruby Coats; Vice President — TBA; Treasurer — Pastor Paul Keohn; Secretary — Elvarane Showers.
 - **Contact:** Albionministers@gmail.com, 517-494-0499, PO Box 481, Albion MI 49224.
 
+## Site Basics (Nov 2026 audit)
+- Brand colors were darkened for WCAG AA contrast: accent green `#596b29` (was `#adc178`), secondary tan `#82634a` (was `#a98467`).
+- Each route has a `layout.tsx` that sets its page title, description, canonical URL and social preview via `lib/pageMetadata.ts`.
+- `app/sitemap.ts`, `app/robots.ts`, `app/opengraph-image.png` (link previews) and a branded `app/not-found.tsx`.
+- Font is loaded with `next/font` (Space Grotesk) instead of a CSS import.
+
 ## Known Follow-Ups
-- Google Calendar API key is still hardcoded in `lib/fetchGoogleCalendarEvents.ts`. Rotate in Google Cloud Console and move to `NEXT_PUBLIC_GOOGLE_CALENDAR_API_KEY` when ready.
+- Google Calendar API key is hardcoded in `lib/fetchGoogleCalendarEvents.ts` (it is visible in the browser either way). As of Nov 2026 it was **not restricted**: in Google Cloud Console → Credentials, restrict it to HTTP referrers `*.albionministers.org/*` and to the Calendar API only.
 - Vice President leadership slot is still TBA.
 - AMA logo: the only copy available was a 720px JPEG on a blue background. It was rebuilt at 4x: background removed, compression noise smoothed, jagged edges on the shield, cross, dove and ring redrawn, and both lines of lettering re-set in Palatino Bold. Files in `public/images/brand/` (`ama-logo-full.png` 2400px for print/flyers, `ama-logo.png` for the sidebar, `ama-seal.png` the round shield badge). Site icons in `app/` (`favicon.ico`, `icon.png`, `apple-icon.png`) are made from the seal. If the designer's original file turns up, replace these.
 - Night of Treasures 2026 details are not yet published — placeholder copy lives on `/night-of-treasures`.

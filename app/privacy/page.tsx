@@ -1,6 +1,6 @@
 export default function PrivacyPage() {
   return (
-    <main className="bg-neutral min-h-screen p-8">
+    <div className="bg-neutral min-h-screen p-8">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-8 text-primary text-center">Privacy Policy</h1>
         
@@ -120,6 +120,6 @@ export default function PrivacyPage() {
           </section>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

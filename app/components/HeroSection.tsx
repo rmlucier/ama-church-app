@@ -160,17 +160,6 @@ export default function HeroSection() {
                     <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
                   </div>
                 )}
-
-                {/* Image Overlay Content */}
-                {imagesLoaded && (
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4">
-                      <p className="text-primary text-sm font-medium">
-                        {heroImages[currentImageIndex]?.alt}
-                      </p>
-                    </div>
-                  </div>
-                )}
               </div>
 
               {/* Slider Controls */}

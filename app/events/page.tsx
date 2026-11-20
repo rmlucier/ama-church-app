@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { fetchGoogleCalendarEvents, GoogleCalendarEvent } from '@/lib/fetchGoogleCalendarEvents';
 
 export default function EventsPage() {
@@ -39,7 +40,7 @@ export default function EventsPage() {
   };
 
   return (
-    <main className="bg-surface min-h-screen p-8">
+    <div className="bg-surface min-h-screen p-8">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-4 text-heading">
           Upcoming Events
@@ -169,7 +170,25 @@ export default function EventsPage() {
             })}
           </div>
         )}
+
+        {/* Annual signature events */}
+        <section aria-labelledby="annual-events" className="mt-16">
+          <h2 id="annual-events" className="text-2xl lg:text-3xl text-heading text-center mb-6">
+            Annual Events
+          </h2>
+          <Link
+            href="/night-of-treasures"
+            className="block max-w-2xl mx-auto bg-white rounded-xl shadow-md border-l-4 border-accent p-6 hover:shadow-lg hover:-translate-y-0.5 transition-all"
+          >
+            <p className="text-sm font-semibold uppercase tracking-wide text-accent mb-1">Every fall</p>
+            <h3 className="text-xl font-bold text-primary mb-2">Night of Treasures</h3>
+            <p className="text-primary">
+              An evening of worship, clean comedy and community awards honoring the servant leaders of Albion.
+            </p>
+            <span className="inline-block mt-3 font-semibold text-accent">Learn more &rarr;</span>
+          </Link>
+        </section>
       </div>
-    </main>
+    </div>
   );
 } 

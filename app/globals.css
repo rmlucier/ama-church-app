@@ -1,12 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
   /* Custom AMA colors */
   --color-primary: #6c584c;
-  --color-secondary: #a98467;
+  /* Darkened from #a98467 for WCAG AA contrast: 5.5:1 on white, 4.5:1 on cream */
+  --color-secondary: #82634a;
   --color-neutral: #f0ead2;
-  --color-accent: #adc178;
+  /* Darkened from #adc178 for WCAG AA contrast: 5.9:1 with white text, 4.9:1 on cream */
+  --color-accent: #596b29;
   --color-surface: #dde5b6;
   
   /* shadcn/ui design tokens - minimal styling */
@@ -36,7 +37,7 @@
   --chart-5: 27 87% 67%;
   --radius: 0.5rem;
   
-  --font-sans: 'Space Grotesk', 'Geist', Arial, sans-serif;
+  --font-sans: var(--font-space-grotesk), Arial, sans-serif;
 }
 
 /* Custom utility classes - now using shadcn/ui components */

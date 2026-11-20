@@ -1,6 +1,6 @@
 export default function TermsPage() {
   return (
-    <main className="bg-neutral min-h-screen p-8">
+    <div className="bg-neutral min-h-screen p-8">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-8 text-primary text-center">Terms of Use</h1>
         
@@ -134,6 +134,6 @@ export default function TermsPage() {
           </section>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
