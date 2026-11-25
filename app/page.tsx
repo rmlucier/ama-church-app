@@ -200,7 +200,7 @@ export default function Home() {
                 return (
                   <Drawer key={index}>
                     <DrawerTrigger asChild>
-                      <div className="bg-white border-2 border-accent rounded-lg p-4 cursor-pointer hover:shadow-xl hover:-translate-y-1 hover:border-secondary transition-all duration-300 ease-out">
+                      <button type="button" className="w-full text-left bg-white border-2 border-accent rounded-lg p-4 cursor-pointer hover:shadow-xl hover:-translate-y-1 hover:border-secondary transition-all duration-300 ease-out">
                         {/* AMA Member Badge */}
                         <div className="bg-accent text-white text-xs font-semibold px-2 py-1 rounded text-center mb-3">
                           AMA MEMBER
@@ -221,7 +221,7 @@ export default function Home() {
                         <h3 className="font-semibold text-primary text-sm mb-1">{church.Name}</h3>
                         <p className="text-accent text-xs font-medium mb-2">{church.Denomination}</p>
                         <p className="text-primary text-xs truncate">{church.Address}</p>
-                      </div>
+                      </button>
                     </DrawerTrigger>
                     
                     <DrawerContent>

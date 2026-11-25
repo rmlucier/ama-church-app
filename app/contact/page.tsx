@@ -134,7 +134,7 @@ export default function ContactPage() {
                 >
                   Send Message
                 </button>
-                <p className="text-xs text-primary/70">
+                <p className="text-xs text-primary">
                   This opens your email app with the message pre-filled so you can send it to Albionministers@gmail.com.
                 </p>
               </form>

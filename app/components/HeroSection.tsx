@@ -119,11 +119,11 @@ export default function HeroSection() {
             <div className="mt-12 grid grid-cols-2 gap-8">
               <div className="text-center lg:text-left">
                 <div className="text-2xl lg:text-3xl font-bold text-accent">25+</div>
-                <div className="text-sm text-primary/70">Member Churches</div>
+                <div className="text-sm text-primary">Member Churches</div>
               </div>
               <div className="text-center lg:text-left">
                 <div className="text-2xl lg:text-3xl font-bold text-accent">50+</div>
-                <div className="text-sm text-primary/70">Years of Service</div>
+                <div className="text-sm text-primary">Years of Service</div>
               </div>
             </div>
           </div>

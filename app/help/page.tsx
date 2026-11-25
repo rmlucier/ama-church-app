@@ -58,7 +58,7 @@ export default function HelpPage() {
           {resources.map((resource, idx) => (
             <Drawer key={idx}>
               <DrawerTrigger asChild>
-                <div className="bg-white border rounded-lg p-4 cursor-pointer hover:shadow-xl hover:-translate-y-1 hover:border-accent transition-all duration-300 ease-out">
+                <button type="button" className="w-full text-left bg-white border rounded-lg p-4 cursor-pointer hover:shadow-xl hover:-translate-y-1 hover:border-accent transition-all duration-300 ease-out">
                   {/* Resource Type Badge */}
                   <div className="bg-secondary text-white text-xs font-semibold px-2 py-1 rounded text-center mb-3">
                     {resource.Type}
@@ -70,7 +70,7 @@ export default function HelpPage() {
                   {resource['Contact Name'] && (
                     <p className="text-accent text-xs">Contact: {resource['Contact Name']}</p>
                   )}
-                </div>
+                </button>
               </DrawerTrigger>
               
               <DrawerContent>
