@@ -65,7 +65,6 @@ export default function ChristmasCarolingBanner() {
               target="_blank"
               rel="noopener noreferrer"
               className="block group"
-              aria-label="Open the full Community Christmas Caroling flyer"
             >
               <div className="relative aspect-[1199/1312] max-w-sm mx-auto rounded-xl overflow-hidden ring-4 ring-[#f5d47a]/70 shadow-2xl transition-transform duration-300 group-hover:scale-[1.02]">
                 <Image

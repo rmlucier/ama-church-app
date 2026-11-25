@@ -65,7 +65,7 @@ export default function HelpPage() {
                   </div>
                   
                   {/* Basic Info */}
-                  <h3 className="font-semibold text-primary text-sm mb-1">{resource.Name}</h3>
+                  <p className="font-semibold text-primary text-sm mb-1">{resource.Name}</p>
                   <p className="text-primary text-xs line-clamp-2 mb-2">{resource.Description}</p>
                   {resource['Contact Name'] && (
                     <p className="text-accent text-xs">Contact: {resource['Contact Name']}</p>

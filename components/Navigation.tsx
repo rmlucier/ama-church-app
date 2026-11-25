@@ -23,7 +23,7 @@ export function Sidebar() {
     <aside className="fixed left-0 top-0 h-full w-56 bg-white shadow-lg z-40 hidden lg:flex lg:flex-col">
       <div className="p-6 flex-1">
         {/* Logo */}
-        <Link href="/" className="block mb-8 group" aria-label="Albion Ministerial Association home">
+        <Link href="/" className="block mb-8 group">
           <Image
             src="/images/brand/ama-logo.png"
             alt="Albion Ministerial Association logo"
@@ -114,7 +114,7 @@ export function MobileNav() {
           </button>
           
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 text-xl text-heading" aria-label="Albion Ministerial Association home">
+          <Link href="/" className="flex items-center gap-2 text-xl text-heading">
             <Image
               src="/images/brand/ama-seal.png"
               alt=""
